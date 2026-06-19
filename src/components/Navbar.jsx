@@ -6,7 +6,7 @@ export default function Navbar({ activeSection, onNavClick }) {
       <div className="navbar-capsule">
         {/* Left Logo (Geeta University) */}
         <div className="navbar-logo-left" onClick={() => onNavClick('home')}>
-          <img src="/images/gu_logo.png" alt="Geeta University" className="nav-logo-img" />
+          <img src="/images/home/gu_logo.png" alt="Geeta University" className="nav-logo-img" />
         </div>
 
         {/* Navigation Links */}
@@ -63,7 +63,7 @@ export default function Navbar({ activeSection, onNavClick }) {
 
         {/* Right Logo (Geeta Technical Hub) */}
         <div className="navbar-logo-right">
-          <img src="/images/gth.png" alt="Geeta Technical Hub" className="nav-logo-img" />
+          <img src="/images/home/gth.png" alt="Geeta Technical Hub" className="nav-logo-img" />
         </div>
       </div>
     </header>

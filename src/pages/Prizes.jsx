@@ -7,7 +7,7 @@ const objectsData = [
     title: '2nd Prize: Galleon Pool',
     subtitle: 'Grand Runners-Up',
     description: 'A massive cash prize pool distributed in golden wizarding Galleons. Awarded to the runner-up projects that demonstrate stellar execution, usability, and technical integration.',
-    image: '/images/galleon.png',
+    image: '/images/prizes/galleon.png',
     alt: 'Embossed Golden Galleon Coin',
     class: 'left-card'
   },
@@ -17,7 +17,7 @@ const objectsData = [
     title: '1st Prize: Golden Snitch',
     subtitle: 'Ultimate Champions',
     description: 'Awarded to the single team that catches the Golden Snitch—achieving absolute victory as the Grand Champion of NexHack 2026. This prize celebrates the team that showcases the most polished, complete, and visionary project of the hackathon.',
-    image: '/images/snitch.png',
+    image: '/images/prizes/snitch.png',
     alt: 'Flying Golden Snitch with wings',
     class: 'center-card'
   },
@@ -27,13 +27,13 @@ const objectsData = [
     title: '3rd Prize: Elder Wand',
     subtitle: 'Technical Mastery',
     description: 'The supreme prize for the developers who wield unmatched mastery over their codebase. Awarded to the team that builds the most architecturally sound, clean, and optimized code, demonstrating absolute dominance in software engineering.',
-    image: '/images/elder_wand.png',
+    image: '/images/prizes/elder_wand.png',
     alt: 'The Elder Wand resting',
     class: 'right-card'
   }
 ];
 
-function PrizeCard({ obj, onClick, unfolded }) {
+function PrizeCard({ obj, unfolded }) {
   const wrapperRef = useRef(null);
   const cardRef = useRef(null);
 
@@ -94,7 +94,6 @@ function PrizeCard({ obj, onClick, unfolded }) {
     <div 
       ref={wrapperRef} 
       className="prize-cinematic-wrapper"
-      onClick={() => onClick(obj)}
     >
       <div 
         ref={cardRef} 
@@ -117,7 +116,6 @@ function PrizeCard({ obj, onClick, unfolded }) {
 export default function Prizes() {
   const [unfolded, setUnfolded] = useState(false);
   const containerRef = useRef(null);
-  const [selectedPrize, setSelectedPrize] = useState(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -152,42 +150,9 @@ export default function Prizes() {
             key={obj.id}
             obj={obj}
             unfolded={unfolded}
-            onClick={setSelectedPrize}
           />
         ))}
       </div>
-
-      {/* Modal Overlay */}
-      {selectedPrize && (
-        <div 
-          className="modal-overlay active" 
-          onClick={(e) => {
-            if (e.target.classList.contains('modal-overlay')) {
-              setSelectedPrize(null);
-            }
-          }}
-        >
-          <div className="modal-content" style={{ maxWidth: '600px' }}>
-            <button 
-              className="modal-close" 
-              onClick={() => setSelectedPrize(null)}
-              aria-label="Close modal"
-            >
-              &times;
-            </button>
-            <div className="modal-left" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.2)', padding: '20px' }}>
-              <img src={selectedPrize.image} alt={selectedPrize.alt} style={{ maxWidth: '100%', maxHeight: '180px', objectFit: 'contain', filter: 'drop-shadow(0 5px 15px rgba(0,0,0,0.5))' }} />
-            </div>
-            <div className="modal-right">
-              <h3 style={{ fontSize: '2.4rem', fontFamily: 'HarryP', marginBottom: '5px' }}>{selectedPrize.title}</h3>
-              <div className="modal-house gryffindor" style={{ letterSpacing: '1px', textTransform: 'uppercase', fontSize: '0.85rem', marginBottom: '15px' }}>
-                Rank: {selectedPrize.rank} &mdash; {selectedPrize.subtitle}
-              </div>
-              <p style={{ fontSize: '1.05rem', lineHeight: '1.6', color: '#d1d5db' }}>{selectedPrize.description}</p>
-            </div>
-          </div>
-        </div>
-      )}
     </main>
   );
 }

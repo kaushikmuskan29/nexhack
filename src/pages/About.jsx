@@ -28,25 +28,25 @@ export default function About() {
             {/* Set 1 */}
             <div className="glimpses-set">
               <div className="glimpses-card">
-                <img src="/images/event1.png" alt="NexHack 1.0 Moment 1" className="glimpses-img" />
+                <img src="/images/glimpses/event1.png" alt="NexHack 1.0 Moment 1" className="glimpses-img" />
               </div>
               <div className="glimpses-card">
-                <img src="/images/event2.png" alt="NexHack 1.0 Moment 2" className="glimpses-img" />
+                <img src="/images/glimpses/event2.png" alt="NexHack 1.0 Moment 2" className="glimpses-img" />
               </div>
               <div className="glimpses-card">
-                <img src="/images/event3.png" alt="NexHack 1.0 Moment 3" className="glimpses-img" />
+                <img src="/images/glimpses/event3.png" alt="NexHack 1.0 Moment 3" className="glimpses-img" />
               </div>
             </div>
             {/* Set 2 */}
             <div className="glimpses-set">
               <div className="glimpses-card">
-                <img src="/images/event1.png" alt="NexHack 1.0 Moment 1" className="glimpses-img" />
+                <img src="/images/glimpses/event1.png" alt="NexHack 1.0 Moment 1" className="glimpses-img" />
               </div>
               <div className="glimpses-card">
-                <img src="/images/event2.png" alt="NexHack 1.0 Moment 2" className="glimpses-img" />
+                <img src="/images/glimpses/event2.png" alt="NexHack 1.0 Moment 2" className="glimpses-img" />
               </div>
               <div className="glimpses-card">
-                <img src="/images/event3.png" alt="NexHack 1.0 Moment 3" className="glimpses-img" />
+                <img src="/images/glimpses/event3.png" alt="NexHack 1.0 Moment 3" className="glimpses-img" />
               </div>
             </div>
           </div>
@@ -58,25 +58,25 @@ export default function About() {
             {/* Set 1 */}
             <div className="glimpses-set">
               <div className="glimpses-card">
-                <img src="/images/event3.png" alt="NexHack 1.0 Moment 3" className="glimpses-img" />
+                <img src="/images/glimpses/event3.png" alt="NexHack 1.0 Moment 3" className="glimpses-img" />
               </div>
               <div className="glimpses-card">
-                <img src="/images/event2.png" alt="NexHack 1.0 Moment 2" className="glimpses-img" />
+                <img src="/images/glimpses/event2.png" alt="NexHack 1.0 Moment 2" className="glimpses-img" />
               </div>
               <div className="glimpses-card">
-                <img src="/images/event1.png" alt="NexHack 1.0 Moment 1" className="glimpses-img" />
+                <img src="/images/glimpses/event1.png" alt="NexHack 1.0 Moment 1" className="glimpses-img" />
               </div>
             </div>
             {/* Set 2 */}
             <div className="glimpses-set">
               <div className="glimpses-card">
-                <img src="/images/event3.png" alt="NexHack 1.0 Moment 3" className="glimpses-img" />
+                <img src="/images/glimpses/event3.png" alt="NexHack 1.0 Moment 3" className="glimpses-img" />
               </div>
               <div className="glimpses-card">
-                <img src="/images/event2.png" alt="NexHack 1.0 Moment 2" className="glimpses-img" />
+                <img src="/images/glimpses/event2.png" alt="NexHack 1.0 Moment 2" className="glimpses-img" />
               </div>
               <div className="glimpses-card">
-                <img src="/images/event1.png" alt="NexHack 1.0 Moment 1" className="glimpses-img" />
+                <img src="/images/glimpses/event1.png" alt="NexHack 1.0 Moment 1" className="glimpses-img" />
               </div>
             </div>
           </div>

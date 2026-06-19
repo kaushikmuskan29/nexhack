@@ -8,8 +8,8 @@ const sponsorTiers = [
     accentColor: '#eeb939',
     size: 'large',
     sponsors: [
-      { id: 'gringotts',  src: null, role: 'Title Sponsor' },
-      { id: 'ollivanders', src: null, role: 'Hardware Sponsor' },
+      { id: 'gringotts',  src: '/images/sponsors/sponsor1.png', role: 'Title Sponsor' },
+      { id: 'ollivanders', src: '/images/sponsors/sponsor1.png', role: 'Hardware Sponsor' },
     ]
   },
   {
@@ -18,8 +18,8 @@ const sponsorTiers = [
     accentColor: '#c084fc',
     size: 'medium',
     sponsors: [
-      { id: 'ministry', src: null, role: 'Cloud Partner' },
-      { id: 'flourish',  src: null, role: 'Platform Partner' },
+      { id: 'ministry', src: '/images/sponsors/sponsor1.png', role: 'Cloud Partner' },
+      { id: 'flourish',  src: '/images/sponsors/sponsor1.png', role: 'Platform Partner' },
     ]
   },
   {
@@ -28,22 +28,22 @@ const sponsorTiers = [
     accentColor: '#38bdf8',
     size: 'medium',
     sponsors: [
-      { id: 'weasleys',  src: null, role: 'Creativity Sponsor' },
-      { id: 'honeyduke', src: null, role: 'Food Sponsor' },
-      { id: 'quidditch', src: null, role: 'Sports-Tech Sponsor' },
+      { id: 'weasleys',  src: '/images/sponsors/sponsor1.png', role: 'Creativity Sponsor' },
+      { id: 'honeyduke', src: '/images/sponsors/sponsor1.png', role: 'Food Sponsor' },
+      { id: 'quidditch', src: '/images/sponsors/sponsor1.png', role: 'Sports-Tech Sponsor' },
     ]
   },
 ];
 
 const communityPartners = [
-  { id: 'prophet',    src: null },
-  { id: 'hogsmead',   src: null },
-  { id: 'sorting',    src: null },
-  { id: 'three-b',    src: null },
-  { id: 'divination', src: null },
-  { id: 'patronus',   src: null },
-  { id: 'leaky',      src: null },
-  { id: 'floo',       src: null },
+  { id: 'prophet',    src: '/images/sponsors/sponsor1.png' },
+  { id: 'hogsmead',   src: '/images/sponsors/sponsor1.png' },
+  { id: 'sorting',    src: '/images/sponsors/sponsor1.png' },
+  { id: 'three-b',    src: '/images/sponsors/sponsor1.png' },
+  { id: 'divination', src: '/images/sponsors/sponsor1.png' },
+  { id: 'patronus',   src: '/images/sponsors/sponsor1.png' },
+  { id: 'leaky',      src: '/images/sponsors/sponsor1.png' },
+  { id: 'floo',       src: '/images/sponsors/sponsor1.png' },
 ];
 
 function LogoCard({ sponsor, size, accentColor }) {
@@ -129,7 +129,6 @@ export default function Sponsors() {
     <main className="objects-section sponsors-page">
       {/* Header */}
       <div className="themes-header" style={{ marginBottom: '70px' }}>
-        <p className="themes-eyebrow">Powered By</p>
         <h1 className="section-title" style={{ marginBottom: '16px' }}>Sponsors</h1>
         <p className="themes-subheading">
           The wizarding world behind NexHack 2026 — organisations that believe in the next generation of builders.
@@ -151,55 +150,20 @@ export default function Sponsors() {
         <div className="cta-orb cta-orb--gold" />
         <div className="cta-orb cta-orb--purple" />
 
-        {/* Left: copy */}
-        <div className="cta-left">
-          <p className="themes-eyebrow" style={{ marginBottom: '14px', textAlign: 'left' }}>
-            ✦ &nbsp;Join the Magic
-          </p>
-          <h2 className="sponsor-cta-title">Become a<br />Sponsor</h2>
-          <p className="sponsor-cta-desc">
-            Partner with NexHack 2026 and place your brand at the heart of
-            innovation. Connect with 500+ developers, designers, and future
-            tech leaders — all in one spellbinding weekend.
-          </p>
+        <p className="themes-eyebrow" style={{ marginBottom: '12px' }}>
+          ✦ &nbsp;Join the Magic
+        </p>
+        <h2 className="sponsor-cta-title">Become a Sponsor</h2>
+        <p className="sponsor-cta-desc">
+          Partner with NexHack 2026 to showcase your brand, connect with top-tier developer talent, and fuel the next wave of wizarding innovation.
+        </p>
 
-          {/* Perks */}
-          <ul className="cta-perks">
-            <li><span className="cta-perk-dot" />Brand visibility across all event materials</li>
-            <li><span className="cta-perk-dot" />Direct access to top engineering talent</li>
-            <li><span className="cta-perk-dot" />Dedicated sponsor booth & demo session</li>
-            <li><span className="cta-perk-dot" />Social media features & post-event report</li>
-          </ul>
-
-          {/* Actions */}
-          <div className="sponsor-cta-actions">
-            <a href="mailto:sponsors@nexhack.in" className="register-btn" style={{ display: 'inline-block', textDecoration: 'none' }}>
-              Contact Us
-            </a>
-            <a href="#" className="sponsor-cta-link">Download Sponsorship Kit →</a>
-          </div>
-        </div>
-
-        {/* Right: stats */}
-        <div className="cta-right">
-          <div className="cta-stats-grid">
-            {[
-              { value: '500+', label: 'Participants' },
-              { value: '10',   label: 'Tracks' },
-              { value: '24hrs',label: 'of Hacking' },
-              { value: '₹2L+', label: 'Prize Pool' },
-            ].map((s, i) => (
-              <div key={i} className="cta-stat-card">
-                <span className="cta-stat-value">{s.value}</span>
-                <span className="cta-stat-label">{s.label}</span>
-              </div>
-            ))}
-          </div>
-
-          <div className="cta-quote">
-            <span className="cta-quote-mark">"</span>
-            <p>The best way to predict the future is to sponsor the people who will build it.</p>
-          </div>
+        {/* Actions */}
+        <div className="sponsor-cta-actions">
+          <a href="mailto:sponsors@nexhack.in" className="register-btn" style={{ display: 'inline-block', textDecoration: 'none' }}>
+            Contact Us
+          </a>
+          <a href="#" className="sponsor-cta-link">Download Sponsorship Kit →</a>
         </div>
       </div>
     </main>

@@ -98,7 +98,7 @@ export default function Contact() {
               position: 'relative'
             }}>
               <img 
-                src="/images/owl_post_seal.png" 
+                src="/images/accents/owl_post_seal.png" 
                 alt="Magical Owl Post Seal" 
                 style={{
                   height: '100%',

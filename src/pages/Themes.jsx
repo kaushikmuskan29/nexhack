@@ -83,8 +83,10 @@ const tracksData = [
   }
 ];
 
-function TrackCard({ track, index, onClick }) {
+function TrackCard({ track, index, isClicked, onCardClick }) {
   const cardRef = useRef(null);
+  const [isHoveredOver2s, setIsHoveredOver2s] = useState(false);
+  const hoverTimeoutRef = useRef(null);
 
   useEffect(() => {
     const card = cardRef.current;
@@ -120,42 +122,62 @@ function TrackCard({ track, index, onClick }) {
     };
   }, []);
 
+  const handleMouseEnter = () => {
+    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+    hoverTimeoutRef.current = setTimeout(() => {
+      setIsHoveredOver2s(true);
+    }, 2000);
+  };
+
+  const handleMouseLeave = () => {
+    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+    setIsHoveredOver2s(false);
+  };
+
+  const handleClick = () => {
+    onCardClick(track.id);
+  };
+
+  const showDetails = isClicked || isHoveredOver2s;
+
   return (
     <div
       ref={cardRef}
-      className="theme-track-card"
-      onClick={() => onClick(track)}
+      className={`theme-track-card ${showDetails ? 'details-mode' : ''}`}
+      onClick={handleClick}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
-      {/* Number */}
-      <span className="theme-track-number">
-        {String(index + 1).padStart(2, '0')}
-      </span>
+      {/* Front Face */}
+      <div className="theme-card-front">
+        {/* Number */}
+        <span className="theme-track-number">
+          {String(index + 1).padStart(2, '0')}
+        </span>
 
-      {/* Large decorative spell name */}
-      <div className="theme-track-spell-bg" aria-hidden="true">
-        {track.spell}
+        {/* Large decorative spell name */}
+        <div className="theme-track-spell-bg" aria-hidden="true">
+          {track.spell}
+        </div>
+
+        {/* Bottom content */}
+        <div className="theme-track-text">
+          <div className="theme-track-divider" />
+          <h2 className="theme-track-title">{track.title}</h2>
+          <p className="theme-track-role">{track.role}</p>
+        </div>
       </div>
 
-      {/* Bottom content */}
-      <div className="theme-track-text">
-        <div className="theme-track-divider" />
-        <h2 className="theme-track-title">{track.title}</h2>
-        <p className="theme-track-role">{track.role}</p>
+      {/* Details/Back Face (Covers the complete card) */}
+      <div className="theme-card-details">
+        <p className="theme-track-desc-text">{track.desc}</p>
       </div>
     </div>
   );
 }
 
 export default function Themes() {
-  const [selectedTrack, setSelectedTrack] = useState(null);
-
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') setSelectedTrack(null);
-    };
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  const [clickedTrackId, setClickedTrackId] = useState(null);
 
   return (
     <main className="themes-page">
@@ -176,74 +198,11 @@ export default function Themes() {
             key={track.id}
             track={track}
             index={i}
-            onClick={setSelectedTrack}
+            isClicked={clickedTrackId === track.id}
+            onCardClick={(id) => setClickedTrackId(prevId => prevId === id ? null : id)}
           />
         ))}
       </div>
-
-      {/* Modal */}
-      {selectedTrack && (
-        <div
-          className="modal-overlay active"
-          onClick={(e) => {
-            if (e.target.classList.contains('modal-overlay')) setSelectedTrack(null);
-          }}
-        >
-          <div className="modal-content theme-modal-content">
-            <button
-              className="modal-close"
-              onClick={() => setSelectedTrack(null)}
-              aria-label="Close modal"
-            >
-              &times;
-            </button>
-
-            <div className="theme-modal-body" style={{ width: '100%' }}>
-              <p style={{
-                fontFamily: "'Cinzel Decorative', serif",
-                fontSize: '0.75rem',
-                letterSpacing: '3px',
-                textTransform: 'uppercase',
-                color: 'var(--gryffindor-accent)',
-                marginBottom: '12px',
-                opacity: 0.8
-              }}>
-                ✦ {selectedTrack.spell}
-              </p>
-              <h3 style={{
-                fontFamily: 'HarryP, "Cinzel Decorative", serif',
-                fontSize: '3rem',
-                color: 'var(--color-text-light)',
-                letterSpacing: '2px',
-                lineHeight: 1.1,
-                marginBottom: '8px'
-              }}>
-                {selectedTrack.title}
-              </h3>
-              <p style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: '0.78rem',
-                color: 'var(--color-text-muted)',
-                textTransform: 'uppercase',
-                letterSpacing: '2px',
-                marginBottom: '24px'
-              }}>
-                {selectedTrack.role}
-              </p>
-              <div style={{
-                width: '50px',
-                height: '2px',
-                background: 'linear-gradient(90deg, var(--gryffindor-accent), transparent)',
-                marginBottom: '22px',
-                borderRadius: '2px'
-              }} />
-              <p className="object-description" style={{ fontSize: '1.05rem', lineHeight: '1.75' }}>
-                {selectedTrack.desc}
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
     </main>
   );
 }

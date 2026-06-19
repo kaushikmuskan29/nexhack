@@ -76,7 +76,7 @@ export default function App() {
         {/* Video Background for Home section */}
         <div className={`bg-layer video-bg ${activeSection === 'home' ? 'active' : ''}`}>
           <video
-            src="/images/nexhack.mp4"
+            src="/images/home/nexhack.mp4"
             autoPlay
             loop
             muted

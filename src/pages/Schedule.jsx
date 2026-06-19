@@ -239,16 +239,6 @@ export default function Schedule() {
           24 hours of relentless innovation — from the opening ceremony to the grand prize reveal.
         </p>
         <div className="themes-header-divider" />
-
-        {/* Legend */}
-        <div className="schedule-legend">
-          {Object.entries(typeLabels).map(([key, label]) => (
-            <span key={key} className="schedule-legend-item">
-              <span className="schedule-legend-dot" style={{ background: typeColors[key] }} />
-              {label}
-            </span>
-          ))}
-        </div>
       </div>
 
       {/* Days */}
