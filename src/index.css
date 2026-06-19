@@ -1,0 +1,1189 @@
+/* ==========================================================================
+   HARRY POTTER WIZARDING WORLD STYLE SHEET (REACT SPA)
+   ========================================================================== */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Spectral:ital,wght@0,300;0,400;0,600;1,400&display=swap');
+
+@font-face {
+  font-family: 'HarryP';
+  src: url('/fonts/HARRYP__.TTF') format('truetype');
+}
+
+/* Color variables & Design Tokens */
+:root {
+  --color-bg-dark: #030305;
+  --color-text-light: #f5f5fa;
+  --color-text-muted: #a0a0b0;
+
+  /* House Colors */
+  --gryffindor-red: #740001;
+  --gryffindor-gold: #ae0001;
+  --gryffindor-accent: #eeb939;
+
+  --slytherin-green: #1a472a;
+  --slytherin-silver: #2a623d;
+  --slytherin-accent: #aaaaaa;
+
+  --hufflepuff-yellow: #ecb939;
+  --hufflepuff-black: #f0c75e;
+  --hufflepuff-accent: #372e29;
+
+  --ravenclaw-blue: #0e1a40;
+  --ravenclaw-bronze: #222f5b;
+  --ravenclaw-accent: #946b2d;
+
+  --magic-blue-glow: rgba(0, 191, 255, 0.4);
+  --glass-bg: rgba(10, 15, 30, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-blur: blur(20px);
+}
+
+/* Reset and Global Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-light);
+  font-family: 'Spectral', serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+  cursor: none;
+  /* Hide default cursor */
+}
+
+/* Make sure interactive elements hide default cursor too */
+a,
+button,
+input,
+select,
+textarea,
+.card,
+.floating-img,
+.logo {
+  cursor: none;
+}
+
+/* Custom Wand Cursor (Scaled to 120px!) */
+#wand-cursor {
+  position: fixed;
+  width: 120px;
+  height: 120px;
+  background-image: url('/images/cursor_wand.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 99999;
+  mix-blend-mode: screen;
+  /* Blend out the black background of the wand image */
+  transform: translate(-12px, -12px);
+  /* Align wand tip (10% of 120px = 12px) with mouse coordinates */
+  transform-origin: 12px 12px;
+  transition: transform 0.05s linear;
+}
+
+#wand-cursor.hovering {
+  transform: translate(-12px, -12px) scale(1.15) rotate(-15deg);
+}
+
+/* Particle effect */
+.cursor-particle {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  animation: fadeOutParticle 0.6s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes fadeOutParticle {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    filter: blur(0px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(2.5) translate(var(--x-dir), var(--y-dir));
+    filter: blur(2px);
+  }
+}
+
+/* ==========================================================================
+   HEADER & FLOATING CAPSULE NAVBAR
+   ========================================================================== */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  pointer-events: none;
+  /* Let clicks pass through background */
+}
+
+header * {
+  pointer-events: auto;
+  /* Enable clicks on navbar and logo */
+}
+
+/* Small Logo Top Left */
+.logo {
+  font-family: 'HarryP', 'Cinzel Decorative', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-text-light);
+  text-decoration: none;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(0, 191, 255, 0.3), 0 2px 4px rgba(0, 0, 0, 0.8);
+  transition: all 0.3s ease;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.logo:hover {
+  text-shadow: 0 0 15px rgba(0, 191, 255, 0.6), 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Capsule Navbar */
+.navbar-capsule {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(10, 15, 30, 0.85);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1.5px solid rgba(238, 185, 57, 0.4);
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 8px 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+  width: fit-content;
+}
+
+.navbar-logo-left,
+.navbar-logo-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  cursor: pointer;
+}
+
+.navbar-logo-right {
+  cursor: default;
+}
+
+.nav-logo-img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+.nav-links-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-link {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #a0a0b0;
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.nav-link:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.nav-link.active {
+  color: #030305;
+  font-weight: 600;
+  background: #eeb939;
+  box-shadow: 0 0 15px rgba(238, 185, 57, 0.45);
+}
+
+/* ==========================================================================
+   GLOBAL BACKGROUND CROSS-FADE SYSTEM
+   ========================================================================== */
+.global-bg-container {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background-color: var(--color-bg-dark);
+}
+
+.bg-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: opacity 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.bg-layer.home-bg {
+  background-image: radial-gradient(circle at center, rgba(10, 20, 40, 0.4) 0%, rgba(3, 3, 5, 1) 90%);
+}
+
+.bg-layer.video-bg {
+  overflow: hidden;
+}
+
+
+
+
+
+.bg-layer.active {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   LANDING / HOME PAGE (index.html)
+   ========================================================================== */
+.hero-section {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: transparent;
+}
+
+/* Magic Blue Glow behind logo */
+.magic-glow-orb {
+  position: absolute;
+  width: 45vw;
+  height: 45vw;
+  max-width: 600px;
+  max-height: 600px;
+  background: radial-gradient(circle, rgba(0, 191, 255, 0.2) 0%, rgba(0, 191, 255, 0.05) 50%, rgba(0, 0, 0, 0) 70%);
+  border-radius: 50%;
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 1;
+  animation: pulseGlow 8s ease-in-out infinite alternate;
+}
+
+/* Metallic HP Logo */
+.hp-main-title {
+  font-family: 'HarryP', 'Cinzel Decorative', serif;
+  font-size: 7.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  background: linear-gradient(to bottom, #dcdcdc 0%, #b0c4de 40%, #708090 60%, #3a4f66 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 2px rgba(255, 255, 255, 0.4)) drop-shadow(0 15px 25px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 12px rgba(0, 191, 255, 0.45));
+  letter-spacing: 5px;
+  z-index: 2;
+  user-select: none;
+  opacity: 0;
+  transform: scale(0.9) translateY(30px);
+  transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.active .hp-main-title {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  animation: slowFloat 4s ease-in-out infinite alternate;
+}
+
+/* Hero page subtitles */
+.hero-subtitles {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  text-align: center;
+  z-index: 2;
+  margin-top: 15px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.3s, transform 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.3s;
+}
+
+.active .hero-subtitles {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-subtitle {
+  font-family: 'Cinzel', serif;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+}
+
+.hero-subtitle.organised-by {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+
+.hero-subtitle.powered-by {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.hero-subtitle .highlight-text {
+  color: var(--gryffindor-accent);
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(238, 185, 57, 0.35);
+}
+
+/* Subtitle and footer */
+.hp-designer {
+  position: absolute;
+  bottom: 40px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--color-text-muted);
+  letter-spacing: 2px;
+  z-index: 2;
+}
+
+.hp-designer span {
+  font-weight: 600;
+  color: var(--color-text-light);
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+/* Rain Effect Canvas */
+#rain-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.35;
+}
+
+/* ==========================================================================
+   CHARACTERS PAGE (characters.html)
+   ========================================================================== */
+.characters-section {
+  width: 100vw;
+  min-height: 100vh;
+  padding: 140px 10% 80px 10%;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Staggered Card Reveals */
+.characters-section .card-wrapper {
+  opacity: 0;
+  transform: translateY(60px) rotateX(8deg);
+  transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.active .characters-section .card-wrapper {
+  opacity: 1;
+  transform: translateY(0) rotateX(0deg);
+}
+
+.active .characters-section .card-wrapper:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.active .characters-section .card-wrapper:nth-child(2) {
+  transition-delay: 0.22s;
+}
+
+.active .characters-section .card-wrapper:nth-child(3) {
+  transition-delay: 0.34s;
+}
+
+.active .characters-section .card-wrapper:nth-child(4) {
+  transition-delay: 0.46s;
+}
+
+.active .characters-section .card-wrapper:nth-child(5) {
+  transition-delay: 0.58s;
+}
+
+.active .characters-section .card-wrapper:nth-child(6) {
+  transition-delay: 0.7s;
+}
+
+.section-title {
+  font-family: 'HarryP', 'Cinzel Decorative', serif;
+  font-size: 4.5rem;
+  text-align: center;
+  margin-bottom: 60px;
+  color: var(--color-text-light);
+  text-shadow: 0 0 15px rgba(0, 191, 255, 0.25);
+  letter-spacing: 3px;
+}
+
+/* Characters 3D Card Grid */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+  width: 100%;
+  max-width: 1200px;
+  z-index: 5;
+}
+
+/* 3D Card Wrap */
+.card-wrapper {
+  perspective: 1000px;
+  /* Crucial for 3D card tilt */
+}
+
+/* Card Body */
+.card {
+  position: relative;
+  height: 350px;
+  border-radius: 18px;
+  background: #0d1321;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+  transform-style: preserve-3d;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  overflow: visible;
+  /* Let the character breakout overlay display */
+}
+
+/* Inner shadow overlay */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 17px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.2) 60%, rgba(0, 0, 0, 0) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* House Accent Borders on Hover */
+.card-wrapper[data-house="gryffindor"]:hover .card {
+  border-color: var(--gryffindor-accent);
+  box-shadow: 0 15px 40px rgba(174, 0, 1, 0.35), 0 0 15px rgba(238, 185, 57, 0.2);
+}
+
+.card-wrapper[data-house="slytherin"]:hover .card {
+  border-color: var(--slytherin-accent);
+  box-shadow: 0 15px 40px rgba(42, 98, 61, 0.4), 0 0 15px rgba(170, 170, 170, 0.2);
+}
+
+.card-wrapper[data-house="hogwarts"]:hover .card {
+  border-color: #f0c75e;
+  box-shadow: 0 15px 40px rgba(240, 199, 94, 0.35);
+}
+
+/* Card image (Character Cutout) */
+.card-image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 17px;
+  z-index: 1;
+}
+
+/* Character Portrait image */
+.character-portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  mix-blend-mode: screen;
+  /* Blend out pure black background of generated portraits! */
+}
+
+/* 3D Pop-out Layer (duplicate image layered above border) */
+.character-popout {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  mix-blend-mode: screen;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
+  transform: scale(1);
+  mask-image: linear-gradient(to bottom, black 50%, transparent 85%);
+  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 85%);
+}
+
+.card-wrapper:hover .character-portrait {
+  transform: scale(1.1) translateY(-25px);
+}
+
+.card-wrapper:hover .character-popout {
+  opacity: 1;
+  transform: scale(1.1) translateY(-25px);
+}
+
+/* Card details (Text overlays) */
+.card-details {
+  position: absolute;
+  bottom: 25px;
+  left: 0;
+  width: 100%;
+  padding: 0 25px;
+  z-index: 4;
+  transform: translateZ(40px);
+  /* Pushes text forward in 3D space */
+  pointer-events: none;
+}
+
+.character-name {
+  font-family: 'HarryP', 'Cinzel', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--color-text-light);
+  margin-bottom: 5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  letter-spacing: 1px;
+}
+
+.character-role {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* Themes Card & Watermark Styles */
+.themes-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 40px 25px;
+  background: #0d1321;
+  overflow: hidden;
+}
+
+.themes-card-letter {
+  font-family: 'HarryP', 'Cinzel Decorative', serif;
+  font-size: 10rem;
+  line-height: 1;
+  color: var(--color-text-light);
+  text-shadow: 0 0 20px rgba(0, 191, 255, 0.4);
+  opacity: 0.12;
+  transition: all 0.4s ease;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  user-select: none;
+}
+
+.card-wrapper:hover .themes-card-letter {
+  opacity: 0.6;
+  transform: translate(-50%, -50%) scale(1.15);
+}
+
+.card-wrapper[data-house="gryffindor"] .themes-card-letter {
+  text-shadow: 0 0 25px rgba(174, 0, 1, 0.75);
+  color: var(--gryffindor-accent);
+}
+
+.card-wrapper[data-house="slytherin"] .themes-card-letter {
+  text-shadow: 0 0 25px rgba(42, 98, 61, 0.75);
+  color: var(--slytherin-accent);
+}
+
+.card-wrapper[data-house="ravenclaw"] .themes-card-letter {
+  text-shadow: 0 0 25px rgba(14, 26, 64, 0.75);
+  color: var(--ravenclaw-accent);
+}
+
+.card-wrapper[data-house="hufflepuff"] .themes-card-letter {
+  text-shadow: 0 0 25px rgba(236, 185, 57, 0.75);
+  color: var(--hufflepuff-accent);
+}
+
+/* Interactive Card Modals (Detailed character description) */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(15px);
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: linear-gradient(135deg, #0f172a 0%, #030712 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 191, 255, 0.1);
+  border-radius: 20px;
+  width: 90%;
+  max-width: 700px;
+  padding: 40px;
+  position: relative;
+  transform: scale(0.9) translateY(20px);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  gap: 30px;
+}
+
+.modal-overlay.active .modal-content {
+  transform: scale(1) translateY(0);
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: 1.8rem;
+  transition: color 0.2s ease;
+}
+
+.modal-close:hover {
+  color: var(--color-text-light);
+}
+
+.modal-left {
+  flex: 1;
+  max-width: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  height: 250px;
+}
+
+.modal-left img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-right {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.modal-right h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 2.2rem;
+  margin-bottom: 5px;
+  color: var(--color-text-light);
+}
+
+.modal-right .modal-house {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.modal-right .modal-house.gryffindor {
+  color: var(--gryffindor-accent);
+}
+
+.modal-right .modal-house.slytherin {
+  color: #5cd68a;
+}
+
+.modal-right .modal-house.hogwarts {
+  color: #f0c75e;
+}
+
+.modal-right p {
+  font-family: 'Spectral', serif;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #d1d5db;
+}
+
+/* ==========================================================================
+   MAGICAL OBJECTS PAGE (magical_things.html)
+   ========================================================================== */
+.objects-section {
+  width: 100vw;
+  min-height: 100vh;
+  padding: 140px 0 80px 0;
+  background: transparent;
+}
+
+/* Object reveals base states */
+.objects-section .object-card {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.objects-section .object-row.reverse .object-card {
+  transform: translateX(60px);
+}
+
+.objects-section .object-img-wrapper {
+  opacity: 0;
+  transform: scale(0.8) translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Active animation overrides */
+.active .objects-section .object-card {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.active .objects-section .object-img-wrapper {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* Row-by-row staggers */
+.active .objects-section .object-row:nth-child(1) .object-card {
+  transition-delay: 0.1s;
+}
+
+.active .objects-section .object-row:nth-child(1) .object-img-wrapper {
+  transition-delay: 0.22s;
+}
+
+.active .objects-section .object-row:nth-child(2) .object-card {
+  transition-delay: 0.3s;
+}
+
+.active .objects-section .object-row:nth-child(2) .object-img-wrapper {
+  transition-delay: 0.42s;
+}
+
+.active .objects-section .object-row:nth-child(3) .object-card {
+  transition-delay: 0.5s;
+}
+
+.active .objects-section .object-row:nth-child(3) .object-img-wrapper {
+  transition-delay: 0.62s;
+}
+
+.active .objects-section .object-row:nth-child(4) .object-card {
+  transition-delay: 0.7s;
+}
+
+.active .objects-section .object-row:nth-child(4) .object-img-wrapper {
+  transition-delay: 0.82s;
+}
+
+.objects-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5%;
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
+}
+
+/* Object Row Layout */
+.object-row {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  width: 100%;
+}
+
+.object-row.reverse {
+  flex-direction: row-reverse;
+}
+
+/* Glassmorphic Box */
+.object-card {
+  flex: 1.2;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 40px;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.object-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(0, 191, 255, 0.2);
+}
+
+/* Glowing Wand Decor */
+.wand-decor {
+  position: absolute;
+  top: 40px;
+  left: 20px;
+  width: 4px;
+  height: 90px;
+  background: linear-gradient(to bottom, #ff9900, #ff0055);
+  border-radius: 10px;
+  box-shadow: 0 0 15px #ff5500, 0 0 5px #ff9900;
+  opacity: 0.85;
+}
+
+.object-card:hover .wand-decor {
+  animation: pulseWandDecor 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes pulseWandDecor {
+  0% {
+    filter: brightness(1) drop-shadow(0 0 5px rgba(255, 85, 0, 0.5));
+  }
+
+  100% {
+    filter: brightness(1.5) drop-shadow(0 0 15px rgba(255, 85, 0, 1));
+  }
+}
+
+/* Shift content over for the wand decor */
+.object-card-content {
+  padding-left: 20px;
+}
+
+.object-title {
+  font-family: 'HarryP', 'Cinzel Decorative', serif;
+  font-size: 3.2rem;
+  color: var(--color-text-light);
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+}
+
+.object-divider {
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-text-light) 0%, rgba(255, 255, 255, 0) 100%);
+  margin-bottom: 25px;
+}
+
+.object-description {
+  font-family: 'Spectral', serif;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+}
+
+/* Image Container */
+.object-image-side {
+  flex: 0.8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.object-img-wrapper {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Rounded glowing backdrop */
+.object-glow-backdrop {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 191, 255, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+  z-index: 0;
+  filter: blur(20px);
+}
+
+.object-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 1;
+  filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.7));
+  animation: floatObject 6s ease-in-out infinite;
+  mix-blend-mode: screen;
+  /* Enable transparent rendering to hide black borders */
+}
+
+/* Custom animation offsets to prevent uniform floating */
+.object-row:nth-child(even) .object-img {
+  animation: floatObjectReverse 7s ease-in-out infinite;
+}
+
+@keyframes floatObject {
+  0% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: translateY(-15px) rotate(3deg) scale(1.02);
+  }
+
+  100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+}
+
+@keyframes floatObjectReverse {
+  0% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: translateY(-18px) rotate(-3deg) scale(1.02);
+  }
+
+  100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+}
+
+/* ==========================================================================
+   ANIMATIONS & EFFECTS
+   ========================================================================== */
+.lightning-flash {
+  animation: flash 0.8s ease-out;
+}
+
+@keyframes flash {
+  0% {
+    filter: brightness(1);
+  }
+
+  5% {
+    filter: brightness(3.5) saturate(1.5);
+  }
+
+  15% {
+    filter: brightness(1.2);
+  }
+
+  20% {
+    filter: brightness(3.2);
+  }
+
+  35% {
+    filter: brightness(1);
+  }
+}
+
+@keyframes pulseGlow {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+@keyframes slowFloat {
+  0% {
+    transform: translateY(0px);
+  }
+
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Page Transition Overlay */
+.page-transition-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: var(--color-bg-dark);
+  z-index: 999999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.page-transition-overlay.fade-out {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ==========================================================================
+   RESPONSIVE LAYOUTS
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .object-row,
+  .object-row.reverse {
+    flex-direction: column;
+    gap: 40px;
+    align-items: stretch;
+  }
+
+  .object-image-side {
+    order: -1;
+    /* Display image first on tablet/mobile */
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 20px;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .navbar-capsule {
+    position: relative;
+    left: 0;
+    transform: none;
+    width: 100%;
+    justify-content: center;
+    padding: 8px 15px;
+  }
+
+  .navbar-logo-left,
+  .navbar-logo-right {
+    display: none;
+  }
+
+  .logo {
+    display: none;
+    /* Hide top left logo on small screens to save space */
+  }
+
+  .hp-main-title {
+    font-size: 4.5rem;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+
+  .section-title {
+    font-size: 2.2rem;
+    margin-top: 40px;
+  }
+
+  .modal-content {
+    flex-direction: column;
+    align-items: center;
+    padding: 25px;
+    text-align: center;
+  }
+
+  .modal-left {
+    max-width: 150px;
+    height: 180px;
+  }
+}
+
+/* Contact Section Premium Split-Panel Layout */
+.contact-wrapper {
+  display: flex;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.contact-info-panel {
+  flex: 1;
+  padding: 45px;
+  background: linear-gradient(135deg, rgba(174, 0, 1, 0.08) 0%, rgba(3, 3, 5, 0.6) 100%);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-form-panel {
+  flex: 1.3;
+  padding: 45px;
+  position: relative;
+}
+
+@media (max-width: 900px) {
+  .contact-wrapper {
+    flex-direction: column;
+  }
+
+  .contact-info-panel {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 35px 30px;
+  }
+
+  .contact-form-panel {
+    padding: 35px 30px;
+  }
+}
