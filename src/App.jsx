@@ -10,6 +10,7 @@ import Sponsors from './pages/Sponsors';
 import Team from './pages/Team';
 import FAQ from './pages/FAQ';
 import Contact from './pages/Contact';
+import Footer from './components/Footer';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -24,16 +25,24 @@ export default function App() {
           const viewportCenter = window.innerHeight / 2;
 
           let currentSection = 'home';
+          let minDistance = Infinity;
           const debugInfo = [];
           for (const id of sections) {
             const el = document.getElementById(id);
             if (el) {
               const rect = el.getBoundingClientRect();
-              debugInfo.push(`${id}: top=${Math.round(rect.top)}, bottom=${Math.round(rect.bottom)}`);
-              if (rect.top <= viewportCenter && rect.bottom >= viewportCenter) {
+              const sectionCenter = rect.top + rect.height / 2;
+              const distance = Math.abs(sectionCenter - viewportCenter);
+              debugInfo.push(`${id}: top=${Math.round(rect.top)}, bottom=${Math.round(rect.bottom)}, dist=${Math.round(distance)}`);
+              if (distance < minDistance) {
+                minDistance = distance;
                 currentSection = id;
               }
             }
+          }
+          const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 150;
+          if (isAtBottom) {
+            currentSection = 'contact';
           }
           console.log(`Scroll Spy active=${currentSection} scrollY=${window.scrollY} vpCenter=${viewportCenter}`, debugInfo);
           setActiveSection(currentSection);
@@ -73,10 +82,13 @@ export default function App() {
 
       {/* Global Background */}
       <div className="global-bg-container">
-        {/* Video Background for Home section */}
-        <div className={`bg-layer video-bg ${activeSection === 'home' ? 'active' : ''}`}>
+        {/* Video Background for Home & Schedule sections */}
+        <div 
+          className={`bg-layer video-bg ${['home', 'schedule'].includes(activeSection) ? 'active' : ''}`}
+          style={{ display: ['home', 'schedule'].includes(activeSection) ? 'block' : 'none' }}
+        >
           <video
-            src="/images/home/nexhack.mp4"
+            src="./images/home/nexhack.mp4"
             autoPlay
             loop
             muted
@@ -98,7 +110,7 @@ export default function App() {
         </div>
 
         {/* Image Background for all other sections */}
-        <div className={`bg-layer home-bg ${activeSection !== 'home' ? 'active' : ''}`} />
+        <div className={`bg-layer home-bg ${!['home', 'schedule'].includes(activeSection) ? 'active' : ''}`} />
       </div>
 
       {/* Floating Capsule Header */}
@@ -132,6 +144,9 @@ export default function App() {
       <div id="contact" className={activeSection === 'contact' ? 'active' : ''}>
         <Contact />
       </div>
+
+      {/* Footer component */}
+      <Footer onNavClick={handleNavClick} />
     </>
   );
 }

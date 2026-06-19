@@ -7,7 +7,7 @@ const teamData = [
     house: 'Gryffindor House / AI Track Lead',
     class: 'gryffindor',
     role: 'AI & Intellect Lead',
-    image: '/images/team/suryansh.jpeg',
+    image: './images/team/suryansh.jpeg',
     desc: 'The lead builder for the AI track at NexHack. Drawing inspiration from Gryffindor courage, this track focuses on developing state-of-the-art neural networks, generative AI agents, and custom machine learning pipelines to solve complex automation challenges.',
     socials: { github: 'https://github.com', linkedin: 'https://linkedin.com', instagram: 'https://instagram.com' }
   },
@@ -17,7 +17,7 @@ const teamData = [
     house: 'Gryffindor House / UI Lead',
     class: 'gryffindor',
     role: 'Frontend & Design Lead',
-    image: '/images/team/suryansh.jpeg',
+    image: './images/team/suryansh.jpeg',
     desc: 'The frontend lead for the Gryffindor track. Focused on highly responsive interface designs, custom web structures, and wizarding animation systems. This category challenges builders to create stunning user journeys with zero loading latency.',
     socials: { github: 'https://github.com', linkedin: 'https://linkedin.com', instagram: 'https://instagram.com' }
   },
@@ -27,7 +27,7 @@ const teamData = [
     house: 'Gryffindor House / Logic Expert',
     class: 'gryffindor',
     role: 'Core Algorithms Lead',
-    image: '/images/team/suryansh.jpeg',
+    image: './images/team/suryansh.jpeg',
     desc: 'The supreme authority on data logic and parsing algorithms at NexHack. This track focuses on backend optimizations, search queries, database design, and algorithmic efficiency to scale wizarding applications to millions of active queries.',
     socials: { github: 'https://github.com', linkedin: 'https://linkedin.com', instagram: 'https://instagram.com' }
   },
@@ -37,7 +37,7 @@ const teamData = [
     house: 'Hogwarts / Grand Judge',
     class: 'hogwarts',
     role: 'Open Track Director',
-    image: '/images/team/suryansh.jpeg',
+    image: './images/team/suryansh.jpeg',
     desc: "The chief panel organizer and final arbiter of NexHack 2026. Under Dumbledore's guidance, the Open Track welcomes any innovative software solution that breaks the mold of conventional engineering and crafts true magic.",
     socials: { github: 'https://github.com', linkedin: 'https://linkedin.com', instagram: 'https://instagram.com' }
   },
@@ -47,7 +47,7 @@ const teamData = [
     house: 'Slytherin House / Cryptographer',
     class: 'slytherin',
     role: 'Blockchain & Security Lead',
-    image: '/images/team/suryansh.jpeg',
+    image: './images/team/suryansh.jpeg',
     desc: 'The lead instructor for the Slytherin Cryptography track. Focused on high-security vaults, smart contract execution, distributed databases, and zero-knowledge proofs. Builders must design secure code that blocks all intrusion attempts.',
     socials: { github: 'https://github.com', linkedin: 'https://linkedin.com', instagram: 'https://instagram.com' }
   },
@@ -57,7 +57,7 @@ const teamData = [
     house: 'Slytherin House / Red Team Lead',
     class: 'slytherin',
     role: 'Cyber Defense Advisor',
-    image: '/images/team/suryansh.jpeg',
+    image: './images/team/suryansh.jpeg',
     desc: 'The ultimate adversarial simulator for our cybersecurity track. Teams will audit, reverse-engineer, and fortify critical wizarding endpoints to withstand high-volume distributed server attacks and protect the integrity of the magic system.',
     socials: { github: 'https://github.com', linkedin: 'https://linkedin.com', instagram: 'https://instagram.com' }
   },
@@ -67,7 +67,7 @@ const teamData = [
     house: 'Slytherin House / Logistics Lead',
     class: 'slytherin',
     role: 'Logistics & Venue Director',
-    image: '/images/team/suryansh.jpeg',
+    image: './images/team/suryansh.jpeg',
     desc: 'Ensures the seamless coordination of transport charms, room allocations, food services, and magical hardware check-ins to make the hackathon venue safe and structured.',
     socials: { github: 'https://github.com', linkedin: 'https://linkedin.com', instagram: 'https://instagram.com' }
   },
@@ -77,7 +77,7 @@ const teamData = [
     house: 'Gryffindor House / Marketing Lead',
     class: 'gryffindor',
     role: 'Marketing & Community Lead',
-    image: '/images/team/suryansh.jpeg',
+    image: './images/team/suryansh.jpeg',
     desc: 'Drives community engagement, tracks sponsor features, schedules public announcements, and ensures the magic of NexHack is shared globally through wizarding media channels.',
     socials: { github: 'https://github.com', linkedin: 'https://linkedin.com', instagram: 'https://instagram.com' }
   }

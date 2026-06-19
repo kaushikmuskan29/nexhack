@@ -74,7 +74,7 @@ export default function WandCursor() {
     const onMouseLeave = () => cursor.classList.remove('hovering');
 
     const addHoverListeners = () => {
-      const hoverables = document.querySelectorAll('a, button, select, input, .card, .floating-img, .logo, .character-name, .team-social-icon');
+      const hoverables = document.querySelectorAll('a, button, select, input, .card, .floating-img, .logo, .character-name, .team-social-icon, .faq-item, .faq-search-input, .footer-logo, .footer-nav-grid button, .footer-social-icon');
       hoverables.forEach(elem => {
         elem.removeEventListener('mouseenter', onMouseEnter);
         elem.removeEventListener('mouseleave', onMouseLeave);
@@ -91,7 +91,7 @@ export default function WandCursor() {
       document.removeEventListener('mousemove', onMouseMove);
       cancelAnimationFrame(animationFrameId);
       observer.disconnect();
-      const hoverables = document.querySelectorAll('a, button, select, input, .card, .floating-img, .logo, .character-name, .team-social-icon');
+      const hoverables = document.querySelectorAll('a, button, select, input, .card, .floating-img, .logo, .character-name, .team-social-icon, .faq-item, .faq-search-input, .footer-logo, .footer-nav-grid button, .footer-social-icon');
       hoverables.forEach(elem => {
         elem.removeEventListener('mouseenter', onMouseEnter);
         elem.removeEventListener('mouseleave', onMouseLeave);

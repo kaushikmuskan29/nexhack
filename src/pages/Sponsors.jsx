@@ -8,8 +8,8 @@ const sponsorTiers = [
     accentColor: '#eeb939',
     size: 'large',
     sponsors: [
-      { id: 'gringotts',  src: '/images/sponsors/sponsor1.png', role: 'Title Sponsor' },
-      { id: 'ollivanders', src: '/images/sponsors/sponsor1.png', role: 'Hardware Sponsor' },
+      { id: 'gringotts',  src: './images/sponsors/sponsor1.png', role: 'Title Sponsor' },
+      { id: 'ollivanders', src: './images/sponsors/sponsor1.png', role: 'Hardware Sponsor' },
     ]
   },
   {
@@ -18,8 +18,8 @@ const sponsorTiers = [
     accentColor: '#c084fc',
     size: 'medium',
     sponsors: [
-      { id: 'ministry', src: '/images/sponsors/sponsor1.png', role: 'Cloud Partner' },
-      { id: 'flourish',  src: '/images/sponsors/sponsor1.png', role: 'Platform Partner' },
+      { id: 'ministry', src: './images/sponsors/sponsor1.png', role: 'Cloud Partner' },
+      { id: 'flourish',  src: './images/sponsors/sponsor1.png', role: 'Platform Partner' },
     ]
   },
   {
@@ -28,22 +28,22 @@ const sponsorTiers = [
     accentColor: '#38bdf8',
     size: 'medium',
     sponsors: [
-      { id: 'weasleys',  src: '/images/sponsors/sponsor1.png', role: 'Creativity Sponsor' },
-      { id: 'honeyduke', src: '/images/sponsors/sponsor1.png', role: 'Food Sponsor' },
-      { id: 'quidditch', src: '/images/sponsors/sponsor1.png', role: 'Sports-Tech Sponsor' },
+      { id: 'weasleys',  src: './images/sponsors/sponsor1.png', role: 'Creativity Sponsor' },
+      { id: 'honeyduke', src: './images/sponsors/sponsor1.png', role: 'Food Sponsor' },
+      { id: 'quidditch', src: './images/sponsors/sponsor1.png', role: 'Sports-Tech Sponsor' },
     ]
   },
 ];
 
 const communityPartners = [
-  { id: 'prophet',    src: '/images/sponsors/sponsor1.png' },
-  { id: 'hogsmead',   src: '/images/sponsors/sponsor1.png' },
-  { id: 'sorting',    src: '/images/sponsors/sponsor1.png' },
-  { id: 'three-b',    src: '/images/sponsors/sponsor1.png' },
-  { id: 'divination', src: '/images/sponsors/sponsor1.png' },
-  { id: 'patronus',   src: '/images/sponsors/sponsor1.png' },
-  { id: 'leaky',      src: '/images/sponsors/sponsor1.png' },
-  { id: 'floo',       src: '/images/sponsors/sponsor1.png' },
+  { id: 'prophet',    src: './images/sponsors/sponsor1.png' },
+  { id: 'hogsmead',   src: './images/sponsors/sponsor1.png' },
+  { id: 'sorting',    src: './images/sponsors/sponsor1.png' },
+  { id: 'three-b',    src: './images/sponsors/sponsor1.png' },
+  { id: 'divination', src: './images/sponsors/sponsor1.png' },
+  { id: 'patronus',   src: './images/sponsors/sponsor1.png' },
+  { id: 'leaky',      src: './images/sponsors/sponsor1.png' },
+  { id: 'floo',       src: './images/sponsors/sponsor1.png' },
 ];
 
 function LogoCard({ sponsor, size, accentColor }) {

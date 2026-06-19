@@ -61,8 +61,8 @@ export default function Contact() {
                 Need to reach the Ministry of Hackers or summon the organizing committee? Contact us directly through the channels below.
               </p>
 
-              {/* Detail fields */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              {/* Detail fields in a clean 2-column grid to shorten card height */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px' }}>
                 <div>
                   <h4 style={{ fontFamily: 'Cinzel, serif', fontSize: '0.9rem', color: '#ff9900', letterSpacing: '1px', marginBottom: '4px' }}>EMAIL</h4>
                   <p style={{ fontFamily: 'Spectral, serif', color: '#fff', fontSize: '1.1rem' }}>info@nexhack.com</p>
@@ -75,40 +75,15 @@ export default function Contact() {
                   <h4 style={{ fontFamily: 'Cinzel, serif', fontSize: '0.9rem', color: '#ff9900', letterSpacing: '1px', marginBottom: '4px' }}>INSTAGRAM</h4>
                   <p style={{ fontFamily: 'Spectral, serif', color: '#fff', fontSize: '1.1rem' }}>@nexhack2026</p>
                 </div>
-                <div>
+                <div style={{ gridColumn: 'span 2' }}>
                   <h4 style={{ fontFamily: 'Cinzel, serif', fontSize: '0.9rem', color: '#ff9900', letterSpacing: '1px', marginBottom: '4px' }}>LOCATION</h4>
                   <p style={{ fontFamily: 'Spectral, serif', color: '#fff', fontSize: '1.1rem' }}>Great Hall, Hogwarts Castle</p>
                 </div>
-                <div>
+                <div style={{ gridColumn: 'span 2' }}>
                   <h4 style={{ fontFamily: 'Cinzel, serif', fontSize: '0.9rem', color: '#ff9900', letterSpacing: '1px', marginBottom: '4px' }}>EMERGENCY NO. (HOWLER)</h4>
                   <p style={{ fontFamily: 'Spectral, serif', color: '#fff', fontSize: '1.1rem' }}>+1 (555) 934-OWL</p>
                 </div>
               </div>
-            </div>
-
-            {/* Thematic seal / quill image */}
-            <div style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginTop: '30px',
-              height: '130px',
-              width: '100%',
-              zIndex: 1,
-              position: 'relative'
-            }}>
-              <img 
-                src="/images/accents/owl_post_seal.png" 
-                alt="Magical Owl Post Seal" 
-                style={{
-                  height: '100%',
-                  objectFit: 'contain',
-                  borderRadius: '12px',
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.5)',
-                  border: '1px solid rgba(255,255,255,0.05)',
-                  filter: 'drop-shadow(0 0 10px rgba(236,185,57,0.25))'
-                }}
-              />
             </div>
           </div>
 
@@ -236,7 +211,7 @@ export default function Contact() {
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
                     required
-                    rows={5}
+                    rows={3}
                     placeholder="Inscribe your parchment scroll..."
                     style={{
                       width: '100%',

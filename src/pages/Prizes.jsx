@@ -6,8 +6,8 @@ const objectsData = [
     rank: '2nd',
     title: '2nd Prize: Galleon Pool',
     subtitle: 'Grand Runners-Up',
-    description: 'A massive cash prize pool distributed in golden wizarding Galleons. Awarded to the runner-up projects that demonstrate stellar execution, usability, and technical integration.',
-    image: '/images/prizes/galleon.png',
+    description: 'A massive cash prize pool distributed in wizarding Galleons. Awarded to the runner-up projects that demonstrate stellar execution, usability, and technical integration.',
+    image: './images/prizes/galleon.png',
     alt: 'Embossed Golden Galleon Coin',
     class: 'left-card'
   },
@@ -17,7 +17,7 @@ const objectsData = [
     title: '1st Prize: Golden Snitch',
     subtitle: 'Ultimate Champions',
     description: 'Awarded to the single team that catches the Golden Snitch—achieving absolute victory as the Grand Champion of NexHack 2026. This prize celebrates the team that showcases the most polished, complete, and visionary project of the hackathon.',
-    image: '/images/prizes/snitch.png',
+    image: './images/prizes/snitch.png',
     alt: 'Flying Golden Snitch with wings',
     class: 'center-card'
   },
@@ -27,7 +27,7 @@ const objectsData = [
     title: '3rd Prize: Elder Wand',
     subtitle: 'Technical Mastery',
     description: 'The supreme prize for the developers who wield unmatched mastery over their codebase. Awarded to the team that builds the most architecturally sound, clean, and optimized code, demonstrating absolute dominance in software engineering.',
-    image: '/images/prizes/elder_wand.png',
+    image: './images/prizes/elder_wand.png',
     alt: 'The Elder Wand resting',
     class: 'right-card'
   }
