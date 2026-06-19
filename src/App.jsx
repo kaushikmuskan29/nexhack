@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Themes from './pages/Themes';
 import Prizes from './pages/Prizes';
+import Schedule from './pages/Schedule';
 import Sponsors from './pages/Sponsors';
 import Team from './pages/Team';
 import FAQ from './pages/FAQ';
@@ -19,7 +20,7 @@ export default function App() {
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          const sections = ['home', 'about', 'themes', 'prizes', 'sponsors', 'team', 'faq', 'contact'];
+          const sections = ['home', 'about', 'themes', 'prizes', 'schedule', 'sponsors', 'team', 'faq', 'contact'];
           const viewportCenter = window.innerHeight / 2;
 
           let currentSection = 'home';
@@ -115,6 +116,9 @@ export default function App() {
       </div>
       <div id="prizes" className={activeSection === 'prizes' ? 'active' : ''}>
         <Prizes />
+      </div>
+      <div id="schedule" className={activeSection === 'schedule' ? 'active' : ''}>
+        <Schedule />
       </div>
       <div id="sponsors" className={activeSection === 'sponsors' ? 'active' : ''}>
         <Sponsors />

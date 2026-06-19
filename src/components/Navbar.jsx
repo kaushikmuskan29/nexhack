@@ -30,6 +30,12 @@ export default function Navbar({ activeSection, onNavClick }) {
             Prizes
           </button>
           <button
+            className={`nav-link ${activeSection === 'schedule' ? 'active' : ''}`}
+            onClick={() => onNavClick('schedule')}
+          >
+            Schedule
+          </button>
+          <button
             className={`nav-link ${activeSection === 'sponsors' ? 'active' : ''}`}
             onClick={() => onNavClick('sponsors')}
           >

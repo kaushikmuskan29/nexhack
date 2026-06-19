@@ -627,86 +627,260 @@ header * {
   letter-spacing: 1.5px;
 }
 
-/* Themes Card & Watermark Styles */
-.themes-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
-  gap: 35px;
-  width: 100%;
-  max-width: 1400px;
-  z-index: 5;
-}
+/* ==========================================================================
+   THEMES PAGE — TRACK CARDS
+   ========================================================================== */
 
-.themes-card {
+/* Page-level layout */
+.themes-page {
+  padding: 140px 8% 100px 8%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   align-items: center;
-  padding: 25px 20px !important;
-  background: #0d1321;
-  overflow: hidden;
-  height: 250px !important;
-  /* Shorter card size */
+}
+
+.themes-header {
   text-align: center;
+  max-width: 700px;
+  margin-bottom: 64px;
 }
 
-.theme-spell {
-  font-family: 'Cinzel Decorative', serif;
-  font-size: 0.9rem;
-  color: var(--gryffindor-accent);
-  letter-spacing: 1.5px;
-  margin-bottom: 8px;
-  text-shadow: 0 0 8px rgba(238, 185, 57, 0.45);
-  font-weight: 700;
-  font-style: italic;
+.themes-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  letter-spacing: 4px;
   text-transform: uppercase;
+  color: var(--gryffindor-accent);
+  margin-bottom: 14px;
+  text-shadow: 0 0 12px rgba(238, 185, 57, 0.4);
 }
 
-.themes-card-icon-wrapper {
+.themes-subheading {
+  font-family: 'Spectral', serif;
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+.themes-header-divider {
+  width: 120px;
+  height: 2px;
+  margin: 0 auto;
+  background: linear-gradient(90deg, transparent, var(--gryffindor-accent), transparent);
+  border-radius: 2px;
+  opacity: 0.7;
+}
+
+/* Track cards grid */
+.theme-tracks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 28px;
+  width: 100%;
+  max-width: 1300px;
+}
+
+/* Track number badge (top-right corner) */
+.theme-track-number {
   position: absolute;
-  top: 35% !important;
-  /* Centered in shorter card */
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 95px;
-  height: 95px;
-  opacity: 0.32;
-  /* Increased default visibility */
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  top: 18px;
+  right: 22px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--accent, #eeb939);
+  opacity: 0.35;
+  transition: opacity 0.3s ease;
+  z-index: 2;
   pointer-events: none;
   user-select: none;
+}
+
+.theme-track-card:hover .theme-track-number {
+  opacity: 0.7;
+}
+
+/* Individual track card — base state (hidden before active) */
+.theme-track-card {
+  position: relative;
+  background: rgba(15, 20, 40, 0.75);
+  border: 1px solid rgba(238, 185, 57, 0.15);
+  border-radius: 20px;
+  padding: 28px 26px 26px;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 200px;
+  transform-style: preserve-3d;
+
+  /* Entrance animation base */
+  opacity: 0;
+  transform: translateY(40px) scale(0.97);
+  transition: opacity 0.7s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1),
+              border-color 0.35s ease,
+              box-shadow 0.35s ease;
+}
+
+/* Entrance when section is active */
+.active .theme-track-card {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Staggered delays for each card */
+.active .theme-track-card:nth-child(1)  { transition-delay: 0.05s; }
+.active .theme-track-card:nth-child(2)  { transition-delay: 0.12s; }
+.active .theme-track-card:nth-child(3)  { transition-delay: 0.19s; }
+.active .theme-track-card:nth-child(4)  { transition-delay: 0.26s; }
+.active .theme-track-card:nth-child(5)  { transition-delay: 0.33s; }
+.active .theme-track-card:nth-child(6)  { transition-delay: 0.40s; }
+.active .theme-track-card:nth-child(7)  { transition-delay: 0.47s; }
+.active .theme-track-card:nth-child(8)  { transition-delay: 0.54s; }
+.active .theme-track-card:nth-child(9)  { transition-delay: 0.61s; }
+.active .theme-track-card:nth-child(10) { transition-delay: 0.68s; }
+
+.theme-track-card:hover {
+  border-color: var(--accent, rgba(238, 185, 57, 0.5));
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6),
+              0 0 20px color-mix(in srgb, var(--accent, #eeb939) 25%, transparent);
+}
+
+/* Large decorative spell name — visible element, not watermark */
+.theme-track-spell-bg {
+  font-family: 'HarryP', 'Cinzel Decorative', serif;
+  font-size: 2.2rem;
+  color: var(--gryffindor-accent);
+  opacity: 0.55;
+  letter-spacing: 2px;
+  line-height: 1.2;
+  pointer-events: none;
+  user-select: none;
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  padding: 6px 0 12px 0;
+  transition: opacity 0.35s ease, color 0.35s ease;
+  word-break: break-word;
+  overflow: hidden;
+  max-height: 100px;
+}
+
+.theme-track-card:hover .theme-track-spell-bg {
+  opacity: 0.85;
+  color: var(--gryffindor-accent);
+}
+
+/* Horizontal accent divider */
+.theme-track-divider {
+  width: 40px;
+  height: 2px;
+  margin-bottom: 12px;
+  background: linear-gradient(90deg, var(--gryffindor-accent), transparent);
+  border-radius: 2px;
+  opacity: 0.7;
+  transition: width 0.35s ease, opacity 0.35s ease;
+}
+
+.theme-track-card:hover .theme-track-divider {
+  width: 70px;
+  opacity: 1;
+}
+
+/* Text block */
+.theme-track-text {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.theme-track-title {
+  font-family: 'HarryP', 'Cinzel Decorative', serif;
+  font-size: 1.8rem;
+  color: var(--color-text-light);
+  letter-spacing: 1px;
+  line-height: 1.1;
+}
+
+.theme-track-role {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.73rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* Modal overrides for themes */
+.theme-modal-content {
+  flex-direction: row;
+  gap: 32px;
+  align-items: flex-start;
+  max-width: 600px !important;
+  padding: 40px !important;
+}
+
+.theme-modal-icon-wrap {
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 16px;
 }
 
-.themes-card-svg {
+.theme-modal-icon-wrap svg {
   width: 100%;
   height: 100%;
-  filter: drop-shadow(0 0 12px currentColor) drop-shadow(0 0 4px currentColor);
-  /* Stronger neon light glow */
+  filter: drop-shadow(0 0 10px currentColor);
 }
 
-.card-wrapper:hover .themes-card-icon-wrapper {
-  opacity: 0.95;
-  /* Bright glow on hover */
-  transform: translate(-50%, -50%) scale(1.15);
+.theme-modal-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
-.card-wrapper[data-house="gryffindor"] .themes-card-icon-wrapper {
-  color: var(--gryffindor-accent);
+/* Responsive */
+@media (max-width: 900px) {
+  .theme-tracks-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .theme-modal-content {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .theme-modal-body {
+    align-items: center;
+  }
 }
 
-.card-wrapper[data-house="slytherin"] .themes-card-icon-wrapper {
-  color: #5cd68a;
-}
+@media (max-width: 600px) {
+  .theme-tracks-grid {
+    grid-template-columns: 1fr;
+  }
 
-.card-wrapper[data-house="ravenclaw"] .themes-card-icon-wrapper {
-  color: var(--ravenclaw-accent);
-}
-
-.card-wrapper[data-house="hufflepuff"] .themes-card-icon-wrapper {
-  color: #f0c75e;
+  .themes-page {
+    padding: 120px 5% 80px 5%;
+  }
 }
 
 /* Interactive Card Modals (Detailed character description) */
@@ -1607,5 +1781,246 @@ header * {
     opacity: 1 !important;
     filter: none !important;
     transform: none !important;
+  }
+}
+
+/* ==========================================================================
+   SCHEDULE PAGE — EVENT TIMELINE
+   ========================================================================== */
+
+.schedule-page {
+  padding: 140px 6% 100px 6%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Two-column layout for Day 1 / Day 2 */
+.schedule-days-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Day block */
+.schedule-day-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Day header badge */
+.schedule-day-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 36px;
+}
+
+.schedule-day-badge {
+  font-family: 'HarryP', 'Cinzel Decorative', serif;
+  font-size: 2rem;
+  color: var(--color-text-light);
+  letter-spacing: 2px;
+  background: linear-gradient(135deg, rgba(238, 185, 57, 0.12) 0%, rgba(238, 185, 57, 0.04) 100%);
+  border: 1px solid rgba(238, 185, 57, 0.25);
+  border-radius: 12px;
+  padding: 6px 20px;
+  white-space: nowrap;
+}
+
+.schedule-day-date {
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.schedule-day-subtitle {
+  font-family: 'Spectral', serif;
+  font-size: 0.82rem;
+  color: var(--gryffindor-accent);
+  opacity: 0.75;
+  font-style: italic;
+  margin-top: 2px;
+}
+
+/* Legend */
+.schedule-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.schedule-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.schedule-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Events list */
+.schedule-events-list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Single event row */
+.schedule-event {
+  display: flex;
+  gap: 18px;
+  position: relative;
+  animation: scheduleEventIn 0.5s cubic-bezier(0.25, 1, 0.5, 1) both;
+}
+
+.schedule-event:nth-child(1)  { animation-delay: 0.05s; }
+.schedule-event:nth-child(2)  { animation-delay: 0.10s; }
+.schedule-event:nth-child(3)  { animation-delay: 0.15s; }
+.schedule-event:nth-child(4)  { animation-delay: 0.20s; }
+.schedule-event:nth-child(5)  { animation-delay: 0.25s; }
+.schedule-event:nth-child(6)  { animation-delay: 0.30s; }
+.schedule-event:nth-child(7)  { animation-delay: 0.35s; }
+.schedule-event:nth-child(8)  { animation-delay: 0.40s; }
+.schedule-event:nth-child(9)  { animation-delay: 0.45s; }
+.schedule-event:nth-child(10) { animation-delay: 0.50s; }
+.schedule-event:nth-child(11) { animation-delay: 0.55s; }
+.schedule-event:nth-child(12) { animation-delay: 0.60s; }
+.schedule-event:nth-child(13) { animation-delay: 0.65s; }
+.schedule-event:nth-child(14) { animation-delay: 0.70s; }
+
+@keyframes scheduleEventIn {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Dot + vertical connector */
+.schedule-connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: 20px;
+  padding-top: 4px;
+}
+
+.schedule-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gryffindor-accent);
+  box-shadow: 0 0 8px rgba(238, 185, 57, 0.5);
+  flex-shrink: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.schedule-event:hover .schedule-dot {
+  transform: scale(1.4);
+  box-shadow: 0 0 14px rgba(238, 185, 57, 0.8);
+}
+
+.schedule-line {
+  width: 1px;
+  flex: 1;
+  min-height: 24px;
+  background: linear-gradient(to bottom, rgba(238, 185, 57, 0.35), rgba(238, 185, 57, 0.06));
+  margin-top: 6px;
+  margin-bottom: 0;
+}
+
+/* Event card */
+.schedule-event-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  flex: 1;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.schedule-event:hover .schedule-event-card {
+  border-color: rgba(238, 185, 57, 0.3);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+  transform: translateX(4px);
+}
+
+.schedule-time {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gryffindor-accent);
+  opacity: 0.85;
+}
+
+/* Meta row: time + type badge */
+.schedule-event-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.schedule-type-badge {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border: 1px solid;
+  border-radius: 20px;
+  padding: 2px 8px;
+}
+
+.schedule-event-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-light);
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.schedule-event-desc {
+  font-family: 'Spectral', serif;
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .schedule-days-wrapper {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .schedule-page {
+    padding: 120px 5% 80px 5%;
   }
 }
