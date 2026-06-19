@@ -2024,3 +2024,462 @@ header * {
     padding: 120px 5% 80px 5%;
   }
 }
+
+/* ==========================================================================
+   SPONSORS PAGE — TIERED LAYOUT
+   ========================================================================== */
+
+.sponsors-page {
+  padding: 140px 7% 100px 7%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sponsors-tiers-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Tier section */
+.sponsor-tier {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sponsor-tier-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sponsor-tier-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.sponsor-tier-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.sponsor-tier-line {
+  flex: 1;
+  height: 1px;
+  border-radius: 1px;
+}
+
+/* Grid layouts by size */
+.sponsor-tier-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.sponsor-tier-grid--large {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.sponsor-tier-grid--medium {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.sponsor-tier-grid--small {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Wrap: logo card + role label stacked */
+.sponsor-card-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.sponsor-role-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+/* Logo-only sponsor card */
+.sponsor-logo-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 18px;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  overflow: hidden;
+}
+
+.sponsor-logo-card:hover {
+  border-color: var(--accent, rgba(238, 185, 57, 0.4));
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+  transform: translateY(-4px);
+}
+
+/* Size-specific heights */
+.sponsor-logo-card--large  { height: 140px; }
+.sponsor-logo-card--medium { height: 110px; }
+.sponsor-logo-card--small  { height: 90px; }
+
+/* Actual logo image */
+.sponsor-logo-img {
+  max-width: 70%;
+  max-height: 60%;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.sponsor-logo-card:hover .sponsor-logo-img {
+  opacity: 1;
+}
+
+/* Placeholder when no logo provided */
+.sponsor-logo-placeholder {
+  width: 55%;
+  height: 38%;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+}
+
+/* Marquee logo card */
+.marquee-logo-card {
+  width: 140px;
+  height: 80px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.marquee-logo-card:hover {
+  border-color: var(--accent, rgba(52, 211, 153, 0.4));
+  transform: translateY(-2px);
+}
+
+.marquee-logo-card .sponsor-logo-placeholder {
+  width: 60%;
+  height: 40%;
+}
+
+/* ── Become a Sponsor CTA — Premium Split Layout ── */
+.sponsor-cta-block {
+  position: relative;
+  margin-top: 90px;
+  width: 100%;
+  max-width: 1100px;
+  background: linear-gradient(135deg, rgba(15, 20, 40, 0.9) 0%, rgba(10, 12, 28, 0.95) 100%);
+  border: 1px solid rgba(238, 185, 57, 0.25);
+  border-radius: 28px;
+  padding: 44px 52px;
+  display: flex;
+  gap: 50px;
+  align-items: center;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+/* Animated background orbs */
+.cta-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(60px);
+}
+
+.cta-orb--gold {
+  width: 320px;
+  height: 320px;
+  top: -100px;
+  left: -60px;
+  background: radial-gradient(circle, rgba(238, 185, 57, 0.15) 0%, transparent 70%);
+  animation: orbFloat 8s ease-in-out infinite alternate;
+}
+
+.cta-orb--purple {
+  width: 260px;
+  height: 260px;
+  bottom: -80px;
+  right: -40px;
+  background: radial-gradient(circle, rgba(192, 132, 252, 0.12) 0%, transparent 70%);
+  animation: orbFloat 10s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes orbFloat {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(20px, 15px) scale(1.1); }
+}
+
+/* Left column */
+.cta-left {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.sponsor-cta-title {
+  font-family: 'HarryP', 'Cinzel Decorative', serif;
+  font-size: 3.2rem;
+  color: var(--color-text-light);
+  letter-spacing: 3px;
+  line-height: 1.05;
+  margin-bottom: 14px;
+  background: linear-gradient(135deg, #ffffff 0%, #eeb939 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sponsor-cta-desc {
+  font-family: 'Spectral', serif;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  line-height: 1.75;
+  margin-bottom: 20px;
+}
+
+/* Perks list */
+.cta-perks {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.cta-perks li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.88rem;
+  color: var(--color-text-light);
+  opacity: 0.85;
+}
+
+.cta-perk-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gryffindor-accent);
+  box-shadow: 0 0 6px rgba(238, 185, 57, 0.6);
+  flex-shrink: 0;
+}
+
+.sponsor-cta-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.sponsor-cta-link {
+  font-family: 'Cinzel', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--gryffindor-accent);
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: opacity 0.3s ease;
+}
+
+.sponsor-cta-link:hover { opacity: 0.7; }
+
+/* Right column */
+.cta-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  position: relative;
+  z-index: 1;
+}
+
+/* 2×2 stats grid */
+.cta-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.cta-stat-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(238, 185, 57, 0.15);
+  border-radius: 16px;
+  padding: 22px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.cta-stat-card:hover {
+  border-color: rgba(238, 185, 57, 0.4);
+  transform: translateY(-3px);
+}
+
+.cta-stat-value {
+  font-family: 'HarryP', 'Cinzel Decorative', serif;
+  font-size: 2.2rem;
+  color: var(--gryffindor-accent);
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.cta-stat-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.cta-quote {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .sponsor-tier-grid--large  { grid-template-columns: 1fr 1fr; }
+  .sponsor-tier-grid--medium { grid-template-columns: 1fr 1fr; }
+  .sponsor-tier-grid--small  { grid-template-columns: repeat(2, 1fr); }
+
+  .sponsor-cta-block {
+    flex-direction: column;
+    padding: 48px 36px;
+    gap: 40px;
+  }
+
+  .sponsor-cta-title { font-size: 3rem; }
+}
+
+@media (max-width: 600px) {
+  .sponsor-tier-grid--large,
+  .sponsor-tier-grid--medium,
+  .sponsor-tier-grid--small { grid-template-columns: 1fr; }
+
+  .sponsors-page { padding: 120px 5% 80px 5%; }
+  .sponsor-cta-block { padding: 36px 24px; gap: 32px; }
+  .sponsor-cta-title { font-size: 2.4rem; }
+  .cta-stats-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ==========================================================================
+   COMMUNITY PARTNERS — INFINITE MARQUEE
+   ========================================================================== */
+
+.marquee-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow: hidden;
+  /* Fade edges */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 14px;
+  width: max-content;
+}
+
+/* Row 1 — scrolls left (default) */
+.marquee-track--left {
+  animation: marqueeLeft 30s linear infinite;
+}
+
+/* Row 2 — scrolls right */
+.marquee-track--right {
+  animation: marqueeRight 30s linear infinite;
+}
+
+/* Pause on hover */
+.marquee-wrapper:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeLeft {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marqueeRight {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* Individual marquee card */
+.marquee-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  padding: 14px 20px;
+  text-decoration: none;
+  color: inherit;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.marquee-card:hover {
+  border-color: var(--accent, rgba(52, 211, 153, 0.4));
+  transform: translateY(-2px);
+}
+
+.marquee-logo {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.marquee-name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-text-light);
+  letter-spacing: 0.5px;
+}
