@@ -100,6 +100,9 @@ export default function Home() {
         <p className="hero-subtitle powered-by">
           Powered by <span className="highlight-text">Codeforge Society</span>
         </p>
+        <button className="register-btn" onClick={() => alert("Registration will open soon!")}>
+          Register Now
+        </button>
       </div>
       <canvas ref={canvasRef} id="rain-canvas" />
     </main>

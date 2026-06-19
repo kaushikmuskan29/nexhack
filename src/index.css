@@ -367,6 +367,36 @@ header * {
   text-shadow: 0 0 10px rgba(238, 185, 57, 0.35);
 }
 
+/* Register Button */
+.register-btn {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #030305;
+  background: linear-gradient(135deg, #f0c75e 0%, #eeb939 100%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px 30px;
+  border-radius: 50px;
+  cursor: pointer;
+  z-index: 5;
+  margin-top: 25px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  box-shadow: 0 5px 20px rgba(238, 185, 57, 0.3), inset 0 2px 4px rgba(255, 255, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.register-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(238, 185, 57, 0.5), 0 0 15px rgba(238, 185, 57, 0.3);
+  background: linear-gradient(135deg, #ffd700 0%, #f0c75e 100%);
+}
+
+.register-btn:active {
+  transform: translateY(-1px) scale(1);
+  box-shadow: 0 5px 10px rgba(238, 185, 57, 0.3);
+}
+
 /* Subtitle and footer */
 .hp-designer {
   position: absolute;
@@ -598,55 +628,85 @@ header * {
 }
 
 /* Themes Card & Watermark Styles */
+.themes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
+  gap: 35px;
+  width: 100%;
+  max-width: 1400px;
+  z-index: 5;
+}
+
 .themes-card {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  padding: 40px 25px;
+  padding: 25px 20px !important;
   background: #0d1321;
   overflow: hidden;
+  height: 250px !important;
+  /* Shorter card size */
+  text-align: center;
 }
 
-.themes-card-letter {
-  font-family: 'HarryP', 'Cinzel Decorative', serif;
-  font-size: 10rem;
-  line-height: 1;
-  color: var(--color-text-light);
-  text-shadow: 0 0 20px rgba(0, 191, 255, 0.4);
-  opacity: 0.12;
-  transition: all 0.4s ease;
+.theme-spell {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 0.9rem;
+  color: var(--gryffindor-accent);
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
+  text-shadow: 0 0 8px rgba(238, 185, 57, 0.45);
+  font-weight: 700;
+  font-style: italic;
+  text-transform: uppercase;
+}
+
+.themes-card-icon-wrapper {
   position: absolute;
-  top: 40%;
+  top: 35% !important;
+  /* Centered in shorter card */
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 95px;
+  height: 95px;
+  opacity: 0.32;
+  /* Increased default visibility */
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   pointer-events: none;
   user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.card-wrapper:hover .themes-card-letter {
-  opacity: 0.6;
+.themes-card-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 12px currentColor) drop-shadow(0 0 4px currentColor);
+  /* Stronger neon light glow */
+}
+
+.card-wrapper:hover .themes-card-icon-wrapper {
+  opacity: 0.95;
+  /* Bright glow on hover */
   transform: translate(-50%, -50%) scale(1.15);
 }
 
-.card-wrapper[data-house="gryffindor"] .themes-card-letter {
-  text-shadow: 0 0 25px rgba(174, 0, 1, 0.75);
+.card-wrapper[data-house="gryffindor"] .themes-card-icon-wrapper {
   color: var(--gryffindor-accent);
 }
 
-.card-wrapper[data-house="slytherin"] .themes-card-letter {
-  text-shadow: 0 0 25px rgba(42, 98, 61, 0.75);
-  color: var(--slytherin-accent);
+.card-wrapper[data-house="slytherin"] .themes-card-icon-wrapper {
+  color: #5cd68a;
 }
 
-.card-wrapper[data-house="ravenclaw"] .themes-card-letter {
-  text-shadow: 0 0 25px rgba(14, 26, 64, 0.75);
+.card-wrapper[data-house="ravenclaw"] .themes-card-icon-wrapper {
   color: var(--ravenclaw-accent);
 }
 
-.card-wrapper[data-house="hufflepuff"] .themes-card-letter {
-  text-shadow: 0 0 25px rgba(236, 185, 57, 0.75);
-  color: var(--hufflepuff-accent);
+.card-wrapper[data-house="hufflepuff"] .themes-card-icon-wrapper {
+  color: #f0c75e;
 }
 
 /* Interactive Card Modals (Detailed character description) */
@@ -1185,5 +1245,367 @@ header * {
 
   .contact-form-panel {
     padding: 35px 30px;
+  }
+}
+
+/* ==========================================================================
+   GLIMPSES OF HACKFORGE MARQUEE SECTION
+   ========================================================================== */
+.glimpses-section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 60px auto 20px auto;
+  padding: 0 5%;
+  text-align: center;
+  overflow: hidden;
+  z-index: 5;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.glimpses-title {
+  font-family: 'HarryP', 'Cinzel Decorative', serif;
+  font-size: 3.5rem;
+  color: var(--color-text-light);
+  margin-bottom: 10px;
+  text-shadow: 0 0 15px rgba(238, 185, 57, 0.35);
+  letter-spacing: 2px;
+}
+
+.glimpses-marquee {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 10px 0;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.glimpses-marquee-track {
+  display: flex;
+  width: max-content;
+}
+
+.glimpses-marquee-track.scroll-left {
+  animation: scrollMarqueeLeft 25s linear infinite;
+}
+
+.glimpses-marquee-track.scroll-right {
+  animation: scrollMarqueeRight 25s linear infinite;
+}
+
+.glimpses-marquee:hover .glimpses-marquee-track {
+  animation-play-state: paused;
+}
+
+.glimpses-set {
+  display: flex;
+  gap: 30px;
+  padding-right: 30px;
+}
+
+.glimpses-card {
+  width: 320px;
+  height: 200px;
+  flex-shrink: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--glass-bg);
+  border: 1.5px solid rgba(238, 185, 57, 0.3);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.05);
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.glimpses-card:hover {
+  transform: scale(1.05) translateY(-5px);
+  border-color: rgba(238, 185, 57, 0.8);
+  box-shadow: 0 15px 30px rgba(238, 185, 57, 0.3), 0 0 15px rgba(238, 185, 57, 0.15);
+}
+
+.glimpses-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@keyframes scrollMarqueeLeft {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scrollMarqueeRight {
+  0% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Responsive marquee adjustments */
+@media (max-width: 768px) {
+  .glimpses-section {
+    margin-top: 40px;
+    gap: 10px;
+  }
+
+  .glimpses-title {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+
+  .glimpses-set {
+    gap: 20px;
+    padding-right: 20px;
+  }
+
+  .glimpses-card {
+    width: 250px;
+    height: 160px;
+  }
+}
+
+/* ==========================================================================
+   CINEMATIC UNFOLDING SCROLL-TRIGGERED PRIZES SECTION
+   ========================================================================== */
+.prizes-cinematic-row {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 30px;
+  width: 100%;
+  max-width: 1100px;
+  margin: 50px auto 20px auto;
+  padding: 0 5%;
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 1200px;
+}
+
+.prize-cinematic-wrapper {
+  position: relative;
+  width: 270px;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  transition: z-index 0.3s ease;
+}
+
+.prize-cinematic-card {
+  position: relative;
+  width: 100%;
+  background: rgba(22, 16, 36, 0.65);
+  border: 1px solid rgba(238, 185, 57, 0.25);
+  border-radius: 20px;
+  padding: 25px 20px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 
+              inset 0 1px 2px rgba(255, 255, 255, 0.05);
+  transform-style: preserve-3d;
+  
+  /* Collapsed starting state (hidden & stacked in center) */
+  opacity: 0;
+  filter: blur(12px);
+  transition: transform 1.4s cubic-bezier(0.2, 1, 0.2, 1), 
+              opacity 1.4s cubic-bezier(0.2, 1, 0.2, 1), 
+              filter 1.4s cubic-bezier(0.2, 1, 0.2, 1), 
+              border-color 0.4s ease, 
+              box-shadow 0.4s ease;
+}
+
+/* Staggered entrance start transforms (collapsed/stacked) */
+.prize-cinematic-card.left-card {
+  transform: translate3d(200px, 30px, -80px) rotate(12deg) scale(0.9);
+}
+
+.prize-cinematic-card.center-card {
+  transform: translate3d(0, 50px, -50px) scale(0.95);
+}
+
+.prize-cinematic-card.right-card {
+  transform: translate3d(-200px, 30px, -80px) rotate(-12deg) scale(0.9);
+}
+
+/* Unfolded states when triggered on scroll */
+.prizes-cinematic-row.unfolded .prize-cinematic-card.left-card {
+  transform: rotate(-4deg);
+  opacity: 1;
+  filter: blur(0);
+  transition-delay: 0.15s;
+}
+
+.prizes-cinematic-row.unfolded .prize-cinematic-card.center-card {
+  transform: translateY(0) scale(1.02);
+  opacity: 1;
+  filter: blur(0);
+  transition-delay: 0.35s;
+  z-index: 5;
+  border-color: rgba(238, 185, 57, 0.35);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), 
+              0 0 25px rgba(238, 185, 57, 0.15);
+}
+
+.prizes-cinematic-row.unfolded .prize-cinematic-card.right-card {
+  transform: rotate(4deg);
+  opacity: 1;
+  filter: blur(0);
+  transition-delay: 0.55s;
+}
+
+/* Hover interactions: Expand stack offsets slightly */
+.prize-cinematic-wrapper:hover {
+  z-index: 15;
+}
+
+/* Hover highlights for the main card */
+.prize-cinematic-wrapper:hover .prize-cinematic-card {
+  border-color: rgba(238, 185, 57, 0.85);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.85), 
+              0 0 30px rgba(238, 185, 57, 0.35);
+}
+
+/* Focus Blur effect on siblings when row is hovered */
+.prizes-cinematic-row:hover .prize-cinematic-wrapper:not(:hover) .prize-cinematic-card {
+  opacity: 0.45;
+  filter: blur(2px) scale(0.96);
+}
+
+/* Card inner details */
+.prize-card-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.prize-card-badge {
+  font-family: 'HarryP', 'Cinzel Decorative', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--gryffindor-accent);
+  margin-bottom: 10px;
+  background: rgba(238, 185, 57, 0.08);
+  padding: 2px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(238, 185, 57, 0.2);
+  text-shadow: 0 0 10px rgba(238, 185, 57, 0.4);
+  transform: translate3d(0, 0, 15px);
+}
+
+.prize-card-img-wrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+  transform-style: preserve-3d;
+}
+
+.prize-card-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  z-index: 2;
+  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.6));
+  transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform: translate3d(0, 0, 25px);
+}
+
+.prize-cinematic-wrapper:hover .prize-card-img {
+  transform: translate3d(0, -8px, 40px) scale(1.1) rotate(4deg);
+}
+
+.prize-card-glow-backdrop {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(238, 185, 57, 0.18) 0%, rgba(0, 0, 0, 0) 70%);
+  filter: blur(15px);
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translate3d(0, 0, 5px);
+  pointer-events: none;
+}
+
+.prize-card-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text-light);
+  margin-bottom: 4px;
+  text-align: center;
+  transform: translate3d(0, 0, 10px);
+}
+
+.prize-card-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--gryffindor-accent);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 0;
+  text-align: center;
+  transform: translate3d(0, 0, 8px);
+}
+
+/* Responsive Cinematic Stack override */
+@media (max-width: 990px) {
+  .prizes-cinematic-row {
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .prizes-cinematic-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 35px;
+  }
+
+  .prize-cinematic-wrapper {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .prize-cinematic-card {
+    width: 100%;
+    height: auto;
+    position: relative !important;
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    transition-delay: 0s !important;
+  }
+
+  .prizes-cinematic-row.unfolded .prize-cinematic-card.left-card,
+  .prizes-cinematic-row.unfolded .prize-cinematic-card.center-card,
+  .prizes-cinematic-row.unfolded .prize-cinematic-card.right-card {
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+
+  .prizes-cinematic-row:hover .prize-cinematic-wrapper:not(:hover) .prize-cinematic-card {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
   }
 }
