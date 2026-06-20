@@ -1,5 +1,20 @@
 import React from 'react';
 
+const glimpsesData = [
+  { id: 1, file: 'glimpse1.jpg', alt: 'Enthusiastic wizarding hackathon participants coding together in a decorated hall' },
+  { id: 2, file: 'glimpse2.JPG', alt: 'A close-up of a developer focus-typing complex algorithms on a glowing mechanical keyboard' },
+  { id: 3, file: 'glimpse3.JPG', alt: 'An expert mentor explaining complex architecture ideas on a whiteboard' },
+  { id: 4, file: 'glimpse4.JPG', alt: 'Hackathon team showcasing an interactive IoT hardware project with sensor modules' },
+  { id: 5, file: 'glimpse5.JPG', alt: 'Team of developers smiling and celebrating their project completion' },
+  { id: 6, file: 'glimpse6.JPG', alt: 'Late night coding session with developers focused on debugging screens' },
+  { id: 7, file: 'glimpse7.JPG', alt: 'The main stage featuring dynamic neon lights and project code visualizations' },
+  { id: 8, file: 'glimpse8.JPG', alt: 'A brainstorming session with colorful sticky notes and UI wireframes' },
+  { id: 9, file: 'glimpse9.JPG', alt: 'Hackathon judges reviewing innovative code submissions at a developer desk' },
+  { id: 10, file: 'glimpse10.JPG', alt: 'A large energetic crowd cheering at the opening ceremony of the hackathon' },
+  { id: 11, file: 'glimpse11.JPG', alt: 'A high-performance workspace setup with neural network diagrams on screens' },
+  { id: 12, file: 'glimpse12.JPG', alt: 'Winning team holding a grand trophy and prizes on the main stage' }
+];
+
 export default function About() {
   return (
     <main className="objects-section" style={{ minHeight: '80vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
@@ -27,27 +42,19 @@ export default function About() {
           <div className="glimpses-marquee-track scroll-right">
             {/* Set 1 */}
             <div className="glimpses-set">
-              <div className="glimpses-card">
-                <img src="./images/glimpses/event1.png" alt="NexHack 1.0 Moment 1" className="glimpses-img" />
-              </div>
-              <div className="glimpses-card">
-                <img src="./images/glimpses/event2.png" alt="NexHack 1.0 Moment 2" className="glimpses-img" />
-              </div>
-              <div className="glimpses-card">
-                <img src="./images/glimpses/event3.png" alt="NexHack 1.0 Moment 3" className="glimpses-img" />
-              </div>
+              {glimpsesData.map((img) => (
+                <div key={`row1-set1-${img.id}`} className="glimpses-card">
+                  <img src={`./images/glimpses/${img.file}`} alt={img.alt} className="glimpses-img" />
+                </div>
+              ))}
             </div>
-            {/* Set 2 */}
+            {/* Set 2 (Identical duplicate for infinite seamless loop) */}
             <div className="glimpses-set">
-              <div className="glimpses-card">
-                <img src="./images/glimpses/event1.png" alt="NexHack 1.0 Moment 1" className="glimpses-img" />
-              </div>
-              <div className="glimpses-card">
-                <img src="./images/glimpses/event2.png" alt="NexHack 1.0 Moment 2" className="glimpses-img" />
-              </div>
-              <div className="glimpses-card">
-                <img src="./images/glimpses/event3.png" alt="NexHack 1.0 Moment 3" className="glimpses-img" />
-              </div>
+              {glimpsesData.map((img) => (
+                <div key={`row1-set2-${img.id}`} className="glimpses-card">
+                  <img src={`./images/glimpses/${img.file}`} alt={img.alt} className="glimpses-img" />
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -55,29 +62,21 @@ export default function About() {
         {/* Row 2: Leftward Scrolling (Right to Left) */}
         <div className="glimpses-marquee row-left">
           <div className="glimpses-marquee-track scroll-left">
-            {/* Set 1 */}
+            {/* Set 1 (Reversed) */}
             <div className="glimpses-set">
-              <div className="glimpses-card">
-                <img src="./images/glimpses/event3.png" alt="NexHack 1.0 Moment 3" className="glimpses-img" />
-              </div>
-              <div className="glimpses-card">
-                <img src="./images/glimpses/event2.png" alt="NexHack 1.0 Moment 2" className="glimpses-img" />
-              </div>
-              <div className="glimpses-card">
-                <img src="./images/glimpses/event1.png" alt="NexHack 1.0 Moment 1" className="glimpses-img" />
-              </div>
+              {[...glimpsesData].reverse().map((img) => (
+                <div key={`row2-set1-${img.id}`} className="glimpses-card">
+                  <img src={`./images/glimpses/${img.file}`} alt={img.alt} className="glimpses-img" />
+                </div>
+              ))}
             </div>
-            {/* Set 2 */}
+            {/* Set 2 (Reversed identical duplicate for infinite seamless loop) */}
             <div className="glimpses-set">
-              <div className="glimpses-card">
-                <img src="./images/glimpses/event3.png" alt="NexHack 1.0 Moment 3" className="glimpses-img" />
-              </div>
-              <div className="glimpses-card">
-                <img src="./images/glimpses/event2.png" alt="NexHack 1.0 Moment 2" className="glimpses-img" />
-              </div>
-              <div className="glimpses-card">
-                <img src="./images/glimpses/event1.png" alt="NexHack 1.0 Moment 1" className="glimpses-img" />
-              </div>
+              {[...glimpsesData].reverse().map((img) => (
+                <div key={`row2-set2-${img.id}`} className="glimpses-card">
+                  <img src={`./images/glimpses/${img.file}`} alt={img.alt} className="glimpses-img" />
+                </div>
+              ))}
             </div>
           </div>
         </div>

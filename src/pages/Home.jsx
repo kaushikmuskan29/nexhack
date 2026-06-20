@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 export default function Home() {
   const canvasRef = useRef(null);
   const heroRef = useRef(null);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     // 1. Rain Effect
@@ -100,11 +101,30 @@ export default function Home() {
         <p className="hero-subtitle powered-by">
           Powered by <span className="highlight-text">Codeforge Society</span>
         </p>
-        <button className="register-btn" onClick={() => alert("Registration will open soon!")}>
+        <button className="register-btn" onClick={() => setShowModal(true)}>
           Register Now
         </button>
       </div>
       <canvas ref={canvasRef} id="rain-canvas" />
+
+      {showModal && (
+        <div className="magic-modal-overlay" onClick={() => setShowModal(false)}>
+          <div className="magic-modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="magic-modal-close" onClick={() => setShowModal(false)}>
+              &times;
+            </button>
+            <div className="magic-modal-icon" aria-hidden="true">🔒</div>
+            <h2 className="magic-modal-title">Chamber Sealed!</h2>
+            <div className="magic-modal-divider" />
+            <p className="magic-modal-text">
+              Hold your wands, apprentice! The Registry Scroll is currently locked under an <span className="magic-modal-highlight">Alohomora</span> charm. The counter-spell is being brewed—registration will open soon!
+            </p>
+            <button className="magic-modal-btn" onClick={() => setShowModal(false)}>
+              Dismiss Charm
+            </button>
+          </div>
+        </div>
+      )}
     </main>
   );
 }

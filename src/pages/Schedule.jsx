@@ -217,9 +217,6 @@ function TimelineEvent({ event, isLast }) {
       <div className="schedule-event-card">
         <div className="schedule-event-meta">
           <span className="schedule-time">{event.time}</span>
-          <span className="schedule-type-badge" style={{ color, borderColor: `${color}40`, background: `${color}12` }}>
-            {typeLabels[event.type]}
-          </span>
         </div>
         <h3 className="schedule-event-title">{event.label}</h3>
         <p className="schedule-event-desc">{event.desc}</p>

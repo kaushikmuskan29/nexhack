@@ -50,14 +50,14 @@ function PrizeCard({ obj, unfolded }) {
       const rect = wrapper.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      
+
       const xc = rect.width / 2;
       const yc = rect.height / 2;
-      
+
       const maxTilt = 15;
       const angleX = -((y - yc) / yc) * maxTilt;
       const angleY = ((x - xc) / xc) * maxTilt;
-      
+
       card.style.zIndex = '15';
       card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale3d(1.05, 1.05, 1.05) translateY(-12px)`;
     };
@@ -69,13 +69,13 @@ function PrizeCard({ obj, unfolded }) {
     const onMouseLeave = () => {
       card.style.zIndex = '';
       card.style.transition = 'transform 0.8s cubic-bezier(0.25, 1, 0.25, 1), border-color 0.4s ease, box-shadow 0.4s ease';
-      
+
       // Reset to original fanned rotation angles
       let baseRotation = 'rotate(0deg)';
       if (obj.class === 'left-card') baseRotation = 'rotate(-4deg)';
       if (obj.class === 'right-card') baseRotation = 'rotate(4deg)';
       if (obj.class === 'center-card') baseRotation = 'translateY(0) scale(1.02)';
-      
+
       card.style.transform = baseRotation;
     };
 
@@ -91,12 +91,12 @@ function PrizeCard({ obj, unfolded }) {
   }, [unfolded, obj.class]);
 
   return (
-    <div 
-      ref={wrapperRef} 
+    <div
+      ref={wrapperRef}
       className="prize-cinematic-wrapper"
     >
-      <div 
-        ref={cardRef} 
+      <div
+        ref={cardRef}
         className={`prize-cinematic-card ${obj.class}`}
       >
         <div className="prize-card-glow-backdrop" />

@@ -85,7 +85,7 @@ const tracksData = [
 
 function TrackCard({ track, index, isClicked, onCardClick }) {
   const cardRef = useRef(null);
-  const [isHoveredOver2s, setIsHoveredOver2s] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const hoverTimeoutRef = useRef(null);
 
   useEffect(() => {
@@ -125,20 +125,20 @@ function TrackCard({ track, index, isClicked, onCardClick }) {
   const handleMouseEnter = () => {
     if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
     hoverTimeoutRef.current = setTimeout(() => {
-      setIsHoveredOver2s(true);
-    }, 2000);
+      setIsHovered(true);
+    }, 300);
   };
 
   const handleMouseLeave = () => {
     if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
-    setIsHoveredOver2s(false);
+    setIsHovered(false);
   };
 
   const handleClick = () => {
     onCardClick(track.id);
   };
 
-  const showDetails = isClicked || isHoveredOver2s;
+  const showDetails = isClicked || isHovered;
 
   return (
     <div
