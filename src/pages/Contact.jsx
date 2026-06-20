@@ -77,7 +77,7 @@ export default function Contact() {
                 </div>
                 <div style={{ gridColumn: 'span 2' }}>
                   <h4 style={{ fontFamily: 'Cinzel, serif', fontSize: '0.9rem', color: '#ff9900', letterSpacing: '1px', marginBottom: '4px' }}>LOCATION</h4>
-                  <p style={{ fontFamily: 'Spectral, serif', color: '#fff', fontSize: '1.1rem' }}>Great Hall, Hogwarts Castle</p>
+                  <p style={{ fontFamily: 'Spectral, serif', color: '#fff', fontSize: '1.1rem' }}>Geeta University, Panipat</p>
                 </div>
                 <div style={{ gridColumn: 'span 2' }}>
                   <h4 style={{ fontFamily: 'Cinzel, serif', fontSize: '0.9rem', color: '#ff9900', letterSpacing: '1px', marginBottom: '4px' }}>EMERGENCY NO. (HOWLER)</h4>
