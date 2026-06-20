@@ -83,9 +83,8 @@ const tracksData = [
   }
 ];
 
-function TrackCard({ track, index, isClicked, onCardClick }) {
+function TrackCard({ track, index, isOpen, onCardClick, onCardHover }) {
   const cardRef = useRef(null);
-  const [isHovered, setIsHovered] = useState(false);
   const hoverTimeoutRef = useRef(null);
 
   useEffect(() => {
@@ -104,12 +103,12 @@ function TrackCard({ track, index, isClicked, onCardClick }) {
     };
 
     const onMouseLeave = () => {
-      card.style.transition = 'transform 0.5s ease, border-color 0.35s ease, box-shadow 0.35s ease, opacity 0.7s, scale 0.7s';
+      card.style.transition = 'transform 0.5s ease, border-color 0.35s ease, box-shadow 0.35s ease, opacity 0.7s, scale 0.7s, max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
       card.style.transform = '';
     };
 
     const onMouseEnter = () => {
-      card.style.transition = 'border-color 0.35s ease, box-shadow 0.35s ease';
+      card.style.transition = 'border-color 0.35s ease, box-shadow 0.35s ease, max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
     };
 
     card.addEventListener('mousemove', onMouseMove);
@@ -122,50 +121,51 @@ function TrackCard({ track, index, isClicked, onCardClick }) {
     };
   }, []);
 
+  useEffect(() => {
+    return () => {
+      if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+    };
+  }, []);
+
   const handleMouseEnter = () => {
     if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
     hoverTimeoutRef.current = setTimeout(() => {
-      setIsHovered(true);
-    }, 300);
+      onCardHover(track.id);
+    }, 200);
   };
 
   const handleMouseLeave = () => {
     if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
-    setIsHovered(false);
+    onCardHover(null);
   };
 
   const handleClick = () => {
     onCardClick(track.id);
   };
 
-  const showDetails = isClicked || isHovered;
-
   return (
     <div
       ref={cardRef}
-      className={`theme-track-card ${showDetails ? 'details-mode' : ''}`}
+      className={`theme-track-card ${isOpen ? 'details-mode' : ''}`}
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Front Face */}
-      <div className="theme-card-front">
-        {/* Number */}
-        <span className="theme-track-number">
-          {String(index + 1).padStart(2, '0')}
-        </span>
+      {/* Number */}
+      <span className="theme-track-number">
+        {String(index + 1).padStart(2, '0')}
+      </span>
 
-        {/* Large decorative spell name */}
-        <div className="theme-track-spell-bg" aria-hidden="true">
-          {track.spell}
-        </div>
+      {/* Large decorative spell name */}
+      <div className="theme-track-spell-bg" aria-hidden="true">
+        {track.spell}
+      </div>
 
-        {/* Bottom content */}
-        <div className="theme-track-text">
-          <div className="theme-track-divider" />
-          <h2 className="theme-track-title">{track.title}</h2>
-          <p className="theme-track-role">{track.role}</p>
-        </div>
+      {/* Bottom content */}
+      <div className="theme-track-text">
+        <div className="theme-track-divider" />
+        <h2 className="theme-track-title">{track.title}</h2>
+        <p className="theme-track-role">{track.role}</p>
       </div>
 
       {/* Details/Back Face (Covers the complete card) */}
@@ -178,6 +178,11 @@ function TrackCard({ track, index, isClicked, onCardClick }) {
 
 export default function Themes() {
   const [clickedTrackId, setClickedTrackId] = useState(null);
+  const [hoveredTrackId, setHoveredTrackId] = useState(null);
+
+  const handleCardClick = (id) => {
+    setClickedTrackId((prev) => (prev === id ? null : id));
+  };
 
   return (
     <main className="themes-page">
@@ -193,15 +198,22 @@ export default function Themes() {
 
       {/* Grid */}
       <div className="theme-tracks-grid">
-        {tracksData.map((track, i) => (
-          <TrackCard
-            key={track.id}
-            track={track}
-            index={i}
-            isClicked={clickedTrackId === track.id}
-            onCardClick={(id) => setClickedTrackId(prevId => prevId === id ? null : id)}
-          />
-        ))}
+        {tracksData.map((track, i) => {
+          const isOpen = hoveredTrackId !== null
+            ? hoveredTrackId === track.id
+            : clickedTrackId === track.id;
+
+          return (
+            <TrackCard
+              key={track.id}
+              track={track}
+              index={i}
+              isOpen={isOpen}
+              onCardClick={handleCardClick}
+              onCardHover={setHoveredTrackId}
+            />
+          );
+        })}
       </div>
     </main>
   );

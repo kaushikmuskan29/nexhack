@@ -103,7 +103,7 @@ export default function Footer({ onNavClick }) {
           <h4>Our Sanctuary</h4>
           <div className="footer-map-container">
             <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3472.0461877477537!2d76.84042867548057!3d29.475459341400263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3910656a29f8f435%3A0x6e3d06283c8a983b!2sGeeta%20University!5e0!3m2!1sen!2sin!4v1718790000000!5m2!1sen!2sin" 
+              src="https://maps.google.com/maps?q=Geeta%20University,%20Panipat&z=15&output=embed" 
               width="100%" 
               height="100%" 
               style={{ border: 0 }} 
@@ -113,7 +113,13 @@ export default function Footer({ onNavClick }) {
               title="Geeta University Map"
             />
           </div>
-          <div className="footer-map-address">
+          <a 
+            href="https://www.google.com/maps/place/GEETA+UNIVERSITY,+NAULTHA,+PANIPAT/@29.305211,76.893071,19675m/data=!3m1!1e3!4m6!3m5!1s0x390dc3b5533b6d9f:0x1b563db61bcc0195!8m2!3d29.3052114!4d76.8930706!16s%2Fg%2F11pv2_3shm?hl=en&entry=ttu&g_ep=EgoyMDI2MDYxNi4wIKXMDSoASAFQAw%3D%3D"
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="footer-map-address"
+            style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center', gap: '8px' }}
+          >
             <svg 
               className="location-icon" 
               viewBox="0 0 24 24" 
@@ -129,7 +135,7 @@ export default function Footer({ onNavClick }) {
             <span className="address-text">
               <span className="address-primary">Geeta University, Panipat</span>
             </span>
-          </div>
+          </a>
         </div>
 
       </div>

@@ -74,7 +74,7 @@ function PrizeCard({ obj, unfolded }) {
       let baseRotation = 'rotate(0deg)';
       if (obj.class === 'left-card') baseRotation = 'rotate(-4deg)';
       if (obj.class === 'right-card') baseRotation = 'rotate(4deg)';
-      if (obj.class === 'center-card') baseRotation = 'translateY(0) scale(1.02)';
+      if (obj.class === 'center-card') baseRotation = 'translateY(-15px) scale(1.02)';
 
       card.style.transform = baseRotation;
     };
